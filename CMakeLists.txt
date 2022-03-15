@@ -6,9 +6,8 @@ project ("CMakeProject1")
 enable_testing()
 
 # Include sub-projects.
-add_subdirectory (CMakeProject1)
+#add_subdirectory (CMakeProject1)
 add_subdirectory (tests)
-
 
 
 
