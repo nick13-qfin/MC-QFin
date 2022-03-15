@@ -12,9 +12,9 @@ set(Boost_USE_STATIC_RUNTIME OFF)
 set(Boost_NO_SYSTEM_PATHS ON)
 set(Boost_DEBUG ON)
 if(UNIX)
-    set(BOOST_ROOT "boh")
-    set(BOOST_INCLUDEDIR "boh")
-    set(BOOST_LIBRARYDIR "se")
+    set(BOOST_ROOT "/home/nicola/Coding/boost/boost_1_77_0")
+    set(BOOST_INCLUDEDIR "/home/nicola/Coding/boost/boost_1_77_0")
+    set(BOOST_LIBRARYDIR "/home/nicola/Coding/boost/boost_1_77_0/stage/lib")
 endif()
 if(WIN32)
     set(Boost_COMPILER -vc143)
@@ -23,25 +23,22 @@ if(WIN32)
     set(BOOST_LIBRARYDIR "C:\\dev\\boost_1_78_0\\stage\\lib")
 endif()
 
-set(Boost_USE_STATIC_LIBS ON)
 
-#set(BOOST_ROOT "C:\\dev\\vcpkg\\installed\\x86-windows-static")
-#set(BOOST_INCLUDEDIR "C:\\dev\\vcpkg\\installed\\x86-windows-static\\include\\boost")
-#set(BOObST_LIBRARYDIR "C:\\dev\\vcpkg\\installed\\x86-windows-static\\lib")
+
 
 #find_package(Boost REQUIRED)
-find_package(Boost COMPONENTS system filesystem unit_test_framework)
-#C:\dev\vcpkg\scripts\buildsystems\vcpkg.cmake
+find_package(Boost REQUIRED COMPONENTS unit_test_framework)
 include_directories(${Boost_INCLUDE_DIRS})     
 
+message(STATUS "boost Library ${Boost_LIBRARIES}")
+message(STATUS "boost unit test  ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}")
 
 # Add source to this project's executable.
 add_executable (test1 "test1.cpp")
 target_link_libraries(test1
-                      ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
+                      ${Boost_LIBRARIES}
                       )
-#    ${Boost_FILESYSTEM_LIBRARY}
-#                      ${Boost_SYSTEM_LIBRARY}
+
 # TODO: Add tests and install targets if needed.
 # tell CMake to use CTest extension
 add_test(Test1 test1)
