@@ -3,13 +3,17 @@
 #
 cmake_minimum_required (VERSION 3.8)
 
-project(Test1 VERSION 0.1)
+#project(Test1 VERSION 0.1)
 # Settings the Boost Library 
 set(Boost_USE_STATIC_LIBS ON) 
-set(Boost_USE_MULTITHREADED ON)  
-set(Boost_USE_STATIC_RUNTIME OFF) 
+add_definitions(-DBOOST_UNITTEST)
 
-set(Boost_NO_SYSTEM_PATHS ON)
+#set(Boost_USE_MULTITHREADED OFF)  
+#set(Boost_USE_STATIC_RUNTIME OFF) 
+#add_definitions(-DBOOST_TEST_DYN_LINK) 
+#add_definitions(-DBOOST_UNITTEST)
+
+#set(Boost_NO_SYSTEM_PATHS ON)
 set(Boost_DEBUG ON)
 if(UNIX)
     set(BOOST_ROOT "/home/nicola/Coding/boost/boost_1_77_0")
