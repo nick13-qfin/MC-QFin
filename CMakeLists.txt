@@ -5,13 +5,15 @@ cmake_minimum_required (VERSION 3.8)
 project ("MC-QFin")
 
 if(UNIX)
-    set(EIGEN3_INCLUDE_DIR "~/Coding/eigen/eigen_build")
+    set(EIGEN_DIR "~/Coding/eigen/eigen-3.4.0")
 endif()
 if(WIN32)
-    set(EIGEN3_INCLUDE_DIR "c:\\dev\\eigen\\eigen-3.4.0")
+    set(EIGEN_DIR "c:\\dev\\eigen\\eigen-3.4.0")
 endif()
+#     set(EIGEN3_INCLUDE_DIR "~/Coding/eigen/eigen_build")
 
-include_directories(${EIGEN3_INCLUDE_DIR})
+# include_directories(${EIGEN3_INCLUDE_DIR})
+include_directories(${EIGEN_DIR})
 enable_testing()
 
 # Include sub-projects.

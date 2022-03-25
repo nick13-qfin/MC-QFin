@@ -1,19 +1,14 @@
 #define BOOST_TEST_MAIN
-#define BOOST_TEST_MODULE parameters test
+#define BOOST_TEST_MODULE state test
 
 
 #include <boost/test/unit_test.hpp>
-#include "../lib/parameter.h"
+#include "../lib/state.h"
 
-BOOST_AUTO_TEST_CASE(la) 
-{
-    const double ret = mc::ret(1.0);
-    BOOST_CHECK_EQUAL(ret, 2.0);
-}
 
-BOOST_AUTO_TEST_CASE(parameter) 
+
+BOOST_AUTO_TEST_CASE(state) 
 {
-    const mc::constant_param par = mc::constant_param();
     BOOST_CHECK_EQUAL(par.value(), 0.0);
 }
 

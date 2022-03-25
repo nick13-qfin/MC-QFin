@@ -1,5 +1,5 @@
 #pragma once
-#include <eigen3/Eigen/Dense>
+#include <Eigen/Dense>
 
 namespace mc
 {
@@ -7,7 +7,7 @@ namespace mc
     template <class derived_state_t>
     class base_state
     {
-        Eigen::Matrixdd state_;
+        Eigen::MatrixXd state_;
     public:
         const derived_state_t& true_this() const
         {
@@ -29,7 +29,9 @@ namespace mc
             return true_this().operator[](index);
             
         }
-    }
+    };
+    
+    class  
     
     
     
