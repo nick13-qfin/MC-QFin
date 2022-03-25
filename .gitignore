@@ -474,3 +474,5 @@ build/.cmake/api/v1/reply/target-test1-Debug-9e61b9cbf57e4bfbfffa.json
 MC-QFin.kdev4
 .kdev4/MC-QFin.kdev4
 lib/.parameter.h.kate-swp
+lib/.state.h.kate-swp
+tests/.test_state.cpp.kate-swp
