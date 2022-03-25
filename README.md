@@ -31,11 +31,16 @@ Its location must be specified in Cmake [tests/CMakeLists.txt](tests/CMakeLists.
   set(BOOST_LIBRARYDIR "C:\\dev\\boost_1_78_0\\stage\\lib")
   ```
  ### 2. Eigen
-Eigen is the solution of choice for representing linear algebra matrices `A` and their operations, e.g. `A^T` or `ABc`, as long as realization of multi-dimentional stochastic processes `(X_t, t>0)` 
+Eigen is the solution of choice for representing linear algebra matrices
+```math
+x
+```
+`A` and their operations, e.g. `A^T` or `ABc`, as long as realization of multi-dimentional stochastic processes `(X_t, t>0)` 
  
 #### Installation
 In order to install Eigen, you need to download it (see instructions [here](http://eigen.tuxfamily.org/index.php?title=Main_Page#Download)). 
 
+##### Linux
 In order to include Eigen in Cmake, it must be installed from the `INSTALL` file:
 ```
 Let's call this directory 'source_dir' (where this INSTALL file is).
@@ -47,9 +52,16 @@ Do:
   cmake source_dir
   make install
  ```
+ ##### Windows
+No need to install it. We just include the extracted headers-only library path (see next section).
  #### Specifying its folder path
  Differently from Boost, that is only used for testing, Eigen is used by all the projects and its path is therefore specifyied in the main cmakelist file [here](CMakeLists.txt), using the following commands
  ```cmake
- set(EIGEN3_INCLUDE_DIR "~/Coding/eigen/eigen_build")
- include_directories(${EIGEN3_INCLUDE_DIR})
+if(UNIX)
+    set(EIGEN3_INCLUDE_DIR "~/Coding/eigen/eigen_build")
+endif()
+if(WIN32)
+    set(EIGEN3_INCLUDE_DIR "c:\\dev\\eigen\\eigen-3.4.0")
+endif()
+include_directories(${EIGEN3_INCLUDE_DIR})
  ```
