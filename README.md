@@ -32,10 +32,13 @@ Its location must be specified in Cmake [tests/CMakeLists.txt](tests/CMakeLists.
   ```
  ### 2. Eigen
 Eigen is the solution of choice for representing linear algebra matrices
-```math
-x
-```
-`A` and their operations, e.g. `A^T` or `ABc`, as long as realization of multi-dimentional stochastic processes `(X_t, t>0)` 
+<img src="https://latex.codecogs.com/svg.image?\bf&space;A&space;&space;" title="https://latex.codecogs.com/svg.image?\bf A " />
+and their operations, e.g. 
+<img src="https://latex.codecogs.com/svg.image?\bf&space;A^T&space;&space;" title="https://latex.codecogs.com/svg.image?\bf A^T " /> 
+or 
+<img src="https://latex.codecogs.com/svg.image?\bf&space;A&space;\bf&space;b&space;&space;" title="https://latex.codecogs.com/svg.image?\bf A \bf b " />
+, as long as realization of multi-dimentional stochastic processes 
+<img src="https://latex.codecogs.com/svg.image?({X}_t,\&space;t&space;\geq&space;0)&space;&space;" title="https://latex.codecogs.com/svg.image?({X}_t,\ t \geq 0) " />
  
 #### Installation
 In order to install Eigen, you need to download it (see instructions [here](http://eigen.tuxfamily.org/index.php?title=Main_Page#Download)). 
@@ -65,3 +68,7 @@ if(WIN32)
 endif()
 include_directories(${EIGEN3_INCLUDE_DIR})
  ```
+# Apprendix: LaTeX in this readme file
+Formulas are generated using the code editor [https://latex.codecogs.com/](https://latex.codecogs.com/) and selecting
+- svg
+- HTML
