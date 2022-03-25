@@ -9,7 +9,7 @@ if(UNIX)
 endif()
 if(WIN32)
 #TODO include it here
-    set(EIGEN3_INCLUDE_DIR "~/Coding/eigen/eigen_build")
+    set(EIGEN3_INCLUDE_DIR "c:\\dev\\eigen\\eigen-3.4.0")
 endif()
 
 include_directories(${EIGEN3_INCLUDE_DIR})
