@@ -47,7 +47,7 @@ In order to install Eigen, you need to download it (see instructions [here](http
 
 ##### Linux
 In order to include Eigen in Cmake, it must be installed first (even if it is a header-only file).
-This is an extract from the `INSTALL` file:
+This is an extract from the `INSTALL` file that explains the steps:
 ```
 Let's call this directory 'source_dir' (where this INSTALL file is).
 Before starting, create another directory which we will call 'build_dir'.
@@ -57,6 +57,12 @@ Do:
   cd build_dir
   cmake source_dir
   make install
+ ```
+ Once this is done we would be able to, e.g., `#include <eigen3/Eigen/Dense>`. 
+ The following symbolic link enables us to use `#include <Eigen/Dense>` instead:
+ ```
+ cd /usr/local/include
+sudo ln -sf eigen3/Eigen Eigen
  ```
  ##### Windows
 No need to install it. We just include the extracted headers-only library path (see next section).
