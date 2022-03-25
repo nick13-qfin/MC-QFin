@@ -64,11 +64,11 @@ No need to install it. We just include the extracted headers-only library path (
  Differently from Boost, that is only used for testing, Eigen is used by all the projects and its path is therefore specifyied in the main cmakelist file [here](CMakeLists.txt), using the following commands
  ```cmake
 if(UNIX)
-    set(EIGEN3_INCLUDE_DIR "~/Coding/eigen/eigen_build")
+    set(EIGEN_DIR "~/Coding/eigen/eigen-3.4.0")
 endif()
 if(WIN32)
-    set(EIGEN3_INCLUDE_DIR "c:\\dev\\eigen\\eigen-3.4.0")
+    set(EIGEN_DIR "c:\\dev\\eigen\\eigen-3.4.0")
 endif()
-include_directories(${EIGEN3_INCLUDE_DIR})
+include_directories(${EIGEN_DIR})
  ```
 
