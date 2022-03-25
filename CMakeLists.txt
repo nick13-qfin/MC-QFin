@@ -8,7 +8,6 @@ if(UNIX)
     set(EIGEN3_INCLUDE_DIR "~/Coding/eigen/eigen_build")
 endif()
 if(WIN32)
-#TODO include it here
     set(EIGEN3_INCLUDE_DIR "c:\\dev\\eigen\\eigen-3.4.0")
 endif()
 
