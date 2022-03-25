@@ -11,9 +11,10 @@ installed.
 ### 1. Boost
 At this stage, Boost is only used to run unit testing.
 
-Install Boost:
+#### Installation
+In order to install Boost:
 - see general instructions  from [here](https://www.boost.org/)
-- from [here](https://www.boost.org/doc/libs/1_62_0/more/getting_started/unix-variants.html) for Linux-specific download/installation instructions.
+- for Linux, from [here](https://www.boost.org/doc/libs/1_62_0/more/getting_started/unix-variants.html).
 
 #### Specifying its folder path
 Its location must be specified in Cmake [tests/CMakeLists.txt](tests/CMakeLists.txt). Currently it is:
@@ -32,6 +33,7 @@ Its location must be specified in Cmake [tests/CMakeLists.txt](tests/CMakeLists.
  ### 2. Eigen
 Eigen is the solution of choice for representing linear algebra matrices `A` and their operations, e.g. `A^T` or `ABc`, as long as realization of multi-dimentional stochastic processes `(X_t, t>0)` 
  
+#### Installation
 In order to install Eigen, you need to download it (see instructions [here](http://eigen.tuxfamily.org/index.php?title=Main_Page#Download)). 
 
 In order to include Eigen in Cmake, it must be installed from the `INSTALL` file:
