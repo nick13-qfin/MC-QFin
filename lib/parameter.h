@@ -1,6 +1,8 @@
 #pragma once
 
-// #include <eigen3/Eigen/Dense>
+#include "../lib/state.h"
+#include "../lib/interpolator_base.h"
+#include <memory>
 namespace mc
 {
 	double ret(double x)
@@ -17,9 +19,9 @@ namespace mc
             return static_cast<const derived_param_t&>(*this);
         }
         
-        double value() const
+        double value(const dummy_state& state) const
         {
-            return true_this().value();
+            return true_this().value(state);
         }
     };
     
@@ -28,17 +30,36 @@ namespace mc
         double par_ = 0;
         
     public:
-        double value2() const
+        double value(const dummy_state& state) const
         {
             return par_;
         }
         
     };
+
+    template<class interpolator_t>
+    class time_dep_param : public base_param<time_dep_param<interpolator_t>>
+    {
+        std::unique_ptr<interpolator_t> par_;
+    public:
+
+        time_dep_param(std::vector<double>&& x, std::vector<double>&& f)
+        {
+            par_ = std::make_unique<interpolator_t>(std::move(x), std::move(f));
+        }
+
+        double value(const dummy_state& state) const
+        {
+            const double t = state.get_t();
+            return par_->value(t);
+        }
+    };
 	
     template<class par_t>
 	double consume_parameter(const base_param<par_t>& par)
     {
-        return par.value();
+        const dummy_state state(0.0);
+        return par.value(state);
     }
     
 }

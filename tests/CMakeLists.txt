@@ -39,12 +39,16 @@ include_directories(${Boost_INCLUDE_DIRS})
 message(STATUS "boost Library ${Boost_LIBRARIES}")
 message(STATUS "boost unit test  ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}")
 
-# Add source to this project's executable.
-add_executable (test1 "test1.cpp")
-target_link_libraries(test1
-                      ${Boost_LIBRARIES}
-                      )
 
-# TODO: Add tests and install targets if needed.
+
+# Add source to this project's executable.
+add_executable (test1 test1.cpp  )
+target_link_libraries(test1 ${Boost_LIBRARIES})
 # tell CMake to use CTest extension
-add_test(Test1 test1)
+add_test(NAME t1 COMMAND test1)
+
+add_executable (test2 test_interp.cpp  )
+target_link_libraries(test2 ${Boost_LIBRARIES})
+add_test(NAME t2 COMMAND test2)
+
+
