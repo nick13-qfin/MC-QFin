@@ -7,6 +7,8 @@
 
 namespace mc
 {
+
+
     template <class derived_param_t>
     class base_param
     {
@@ -34,32 +36,32 @@ namespace mc
         
     };
 
-    template<template<class> class interpolator_t, class extrap_t>
-    class time_dep_param : public base_param<time_dep_param<interpolator_t, extrap_t>>
+    template<utils::interp_type I>
+    class time_dep_param : public base_param<time_dep_param<I>>
     {
-        std::unique_ptr<interpolator_t<extrap_t>> par_;
+        std::unique_ptr<I> par_;
     public:
 
         time_dep_param(std::vector<double>&& x, std::vector<double>&& f)
         {
-            static_assert(utils::is_interp<interpolator_t, extrap_t>::value,
-                "interpolator_t is expected to be a specialization of base_interp_1d");
-            par_ = std::make_unique<interpolator_t<extrap_t>>(std::move(x), std::move(f));
+            //static_assert(utils::is_interp<I, E>::value,
+            //    "interpolator_t is expected to be a specialization of base_interp_1d");
+            par_ = std::make_unique<I>(std::move(x), std::move(f));
         }
 
         time_dep_param(const std::vector<double>& x, const std::vector<double>& f)
         {
-            static_assert(utils::is_interp<interpolator_t, extrap_t>::value,
-                "interpolator_t is expected to be a specialization of base_interp_1d");
-            par_ = std::make_unique<interpolator_t<extrap_t>>(x, f);
+            //static_assert(utils::is_interp<I, E>::value,
+            //    "interpolator_t is expected to be a specialization of base_interp_1d");
+            par_ = std::make_unique<I>(x, f);
         }
 
-        time_dep_param(std::unique_ptr<interpolator_t<extrap_t>>&& par) : par_(std::move(par)) {};
+        time_dep_param(std::unique_ptr<I>&& par) : par_(std::move(par)) {};
 
         double value(const dummy_state& state) const
         {
             const double t = state.get_t();
-            return par_->value(t);
+            return par_->interpolate(t);
         }
     };
 	

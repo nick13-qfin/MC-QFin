@@ -4,6 +4,9 @@
 cmake_minimum_required (VERSION 3.8)
 project ("MC-QFin")
 
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 if(UNIX)
     set(EIGEN_DIR "~/Coding/eigen/eigen-3.4.0")
 endif()
