@@ -51,4 +51,9 @@ add_executable (interp test_interp.cpp  )
 target_link_libraries(interp ${Boost_LIBRARIES})
 add_test(NAME ti COMMAND interp)
 
+add_executable (gbm  "test_gbm.cpp")
+target_link_libraries(gbm ${Boost_LIBRARIES})
+# tell CMake to use CTest extension
+add_test(NAME tg COMMAND gbm)
+
 

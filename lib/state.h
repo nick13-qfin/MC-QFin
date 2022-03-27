@@ -24,7 +24,7 @@ namespace mc
             return true_this().time();
         }
 
-        double operator[](int index) const
+        double operator[](size_t index) const
         {
             return true_this().operator[](index);
 
@@ -34,12 +34,20 @@ namespace mc
     class dummy_state : public base_state<dummy_state>
     {
         double t_;
+        std::vector<double> x_;
 
     public:
-        dummy_state(double t) : t_{ t }{}
+        dummy_state(double t, const std::vector<double>& x) : t_(t), x_(x) {}
+        dummy_state(double t, std::vector<double>&& x) : t_(t), x_(std::move(x)) {}
         double get_t() const
         {
             return t_;
+        }
+
+        double operator[](size_t index) const
+        {
+            return x_[index];
+
         }
 
     };
