@@ -1,6 +1,7 @@
 #pragma once
 #include <algorithm>
 #include <vector>
+#include "../lib/extrapolation_policies.h"
 
 namespace utils
 {
@@ -33,10 +34,21 @@ namespace utils
 
 		double value(double t) const
 		{
-			return true_this().value(t);
+			if constexpr (std::is_same<extrap_policy_t, unchecked_boundaries>)
+				return true_this().value(t);
+			else
+			{
+				//TODO check boundaries
+				return true_this().value(t);
+			}
 		}
 
 	};
+
+	template<template<class> class derived_interp, class extrap_policy_t>
+	using is_interp = std::is_base_of<
+		base_interp1d<derived_interp, extrap_policy_t>,
+		derived_interp<extrap_policy_t>>;
 
 	template<class extrap_policy_t>
 	class dummy_interp : public base_interp1d<dummy_interp, extrap_policy_t>
@@ -54,7 +66,7 @@ namespace utils
 		
 		std::vector<double> x_;
 		std::vector<double> f_;
-
+		
 
 	public:
 		pwc_interp(const std::vector<double>& x, const std::vector<double>& f)
@@ -70,4 +82,7 @@ namespace utils
 		}
 
 	};
+
+
+
 }

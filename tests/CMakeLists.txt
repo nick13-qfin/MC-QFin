@@ -42,13 +42,13 @@ message(STATUS "boost unit test  ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}")
 
 
 # Add source to this project's executable.
-add_executable (test1 test1.cpp  )
-target_link_libraries(test1 ${Boost_LIBRARIES})
+add_executable (param "test_param.cpp"  )
+target_link_libraries(param ${Boost_LIBRARIES})
 # tell CMake to use CTest extension
-add_test(NAME t1 COMMAND test1)
+add_test(NAME tp COMMAND param)
 
-add_executable (test2 test_interp.cpp  )
-target_link_libraries(test2 ${Boost_LIBRARIES})
-add_test(NAME t2 COMMAND test2)
+add_executable (interp test_interp.cpp  )
+target_link_libraries(interp ${Boost_LIBRARIES})
+add_test(NAME ti COMMAND interp)
 
 

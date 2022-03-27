@@ -8,6 +8,13 @@
 
 BOOST_AUTO_TEST_SUITE(interp)
 
+BOOST_AUTO_TEST_CASE(compiletimecheck)
+{
+    auto test = utils::is_interp<utils::pwc_interp, void>::value;
+
+    BOOST_CHECK_EQUAL(test, true);
+}
+
 BOOST_AUTO_TEST_CASE(movevectors)
 {
     std::vector<double> x{ 0.0, 1.0, 2.0 };
@@ -18,6 +25,8 @@ BOOST_AUTO_TEST_CASE(movevectors)
     BOOST_CHECK_EQUAL(f.size(), 0);
 
 }
+
+
 
 BOOST_AUTO_TEST_CASE(pwc1)
 {
