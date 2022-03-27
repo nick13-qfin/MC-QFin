@@ -2,6 +2,12 @@
 Place holder for MC-related experiments with C++.
 
 The project uses CMake to build both on Linux and on Windows.
+Currently it is tested on: 
+- Win: VS2022 community edition 
+- Linux: Kdevelop
+
+## Table of contents
+- [Prerequisites](#prerequisites)
 
 References:
 - LaTeX in this Readme: [https://latex.codecogs.com/](https://latex.codecogs.com/) (set svg and HTML)
