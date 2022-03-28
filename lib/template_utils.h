@@ -8,6 +8,6 @@ namespace utils
 	template <template <class...> class Template, class... Args>
 	struct is_specialization<Template<Args...>, Template> : std::true_type {};
 
-
+    
 
 }

@@ -1,7 +1,7 @@
 #pragma once
 #include <algorithm>
 #include <vector>
-#include "../lib/extrapolation_policies.h"
+#include "extrapolation_policies.h"
 
 namespace utils
 {
@@ -44,23 +44,26 @@ namespace utils
 
 	};
 
-	template<template<class> class derived_interp, extrapolation_type E>
-	using is_interp = std::is_base_of<
-		base_interp1d<derived_interp, E>,
-		derived_interp<E>>;
-
-	template<template<class> class derived_interp, extrapolation_type T>
-	constexpr bool is_interp_type = std::is_base_of_v<
-		base_interp1d<derived_interp, T>,
-		derived_interp<T>>;
-
+        
 	template<class full_interp_t>
 	concept interp_type = requires (full_interp_t f, double a)
 	{
 		f.interpolate(a);
 	};
-		
 
+    
+    template <template<class> class concrete, extrapolation_type T>
+    std::true_type is_interp_func(base_interp1d<concrete,T>*);
+    
+    std::false_type is_interp_func(...);
+    
+    template<class T>
+    struct is_interp2 : decltype(is_interp_func(std::declval<T*>())) {};
+    
+    template<class T>
+    concept interp_type2 = is_interp2<T>::value;
+    
+    
 	template<extrapolation_type E>
 	class dummy_interp : public base_interp1d<dummy_interp, E>
 	{

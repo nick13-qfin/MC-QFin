@@ -3,7 +3,7 @@
 
 
 #include <boost/test/unit_test.hpp>
-#include "../lib/interpolator_base.h"
+#include "../lib/interpolation/interpolator_base.h"
 
 
 BOOST_AUTO_TEST_SUITE(interp)
@@ -11,7 +11,7 @@ template<template<class> class derived_interp, class extrapolation>
 double test_get_value(const utils::base_interp1d<derived_interp, extrapolation>& interp, double t)
 {
     return interp.interpolate(t);
-}
+};
 
 BOOST_AUTO_TEST_CASE(crtp)
 {
@@ -25,9 +25,11 @@ BOOST_AUTO_TEST_CASE(crtp)
 
 BOOST_AUTO_TEST_CASE(compiletimecheck)
 {
-    auto test = utils::is_interp<utils::pwc_interp, utils::unchecked_boundaries>::value;
 
-    BOOST_CHECK_EQUAL(test, true);
+//     utils::pwc_interp<utils::unchecked_boundaries>
+    auto test2 = utils::is_interp2<utils::pwc_interp<utils::unchecked_boundaries>>::value;
+    BOOST_CHECK_EQUAL(test2, true);
+    
 }
 
 BOOST_AUTO_TEST_CASE(movevectors)

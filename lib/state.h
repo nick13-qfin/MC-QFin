@@ -3,6 +3,10 @@
 
 namespace mc
 {
+    /*
+     * Maybe it doesn't need any hyerarchy
+     * This might just be the markovian state + time 
+     */
     
     template <class derived_state_t>
     class base_state
@@ -49,6 +53,7 @@ namespace mc
             return x_[index];
 
         }
+        
 
     };
 

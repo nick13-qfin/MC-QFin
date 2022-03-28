@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../lib/state.h"
-#include "../lib/interpolator_base.h"
-#include "../lib/template_utils.h"
+#include "../state.h"
+#include "../interpolation/interpolator_base.h"
+#include "../template_utils.h"
 #include <memory>
 
 namespace mc

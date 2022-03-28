@@ -1,5 +1,5 @@
 #pragma once
-#include "../lib/state.h"
+#include "../state.h"
 
 namespace mc
 {
@@ -18,6 +18,12 @@ namespace mc
 		{
 			return counter_;
 		}
+		
+		stoch_process(bool reset = false)
+        {
+            if (reset)
+                counter_ = 0;
+        }
 
 	public:
 		const derived_proc& true_this() const
@@ -32,12 +38,12 @@ namespace mc
 
 		double drift(const dummy_state& state) const
 		{
-			return true_this.drift(state);
+			return true_this().drift(state);
 		}
 
 		double diffusion(const dummy_state& state) const
 		{
-			return true_this.diffusion(state);
+			return true_this().diffusion(state);
 		}
 	};
 

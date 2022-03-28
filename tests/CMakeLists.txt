@@ -56,4 +56,8 @@ target_link_libraries(gbm ${Boost_LIBRARIES})
 # tell CMake to use CTest extension
 add_test(NAME tg COMMAND gbm)
 
+add_executable (mc_path test_mc_path.cpp  )
+target_link_libraries(mc_path ${Boost_LIBRARIES})
+add_test(NAME tmcp COMMAND mc_path)
+
 
