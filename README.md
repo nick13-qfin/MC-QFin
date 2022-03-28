@@ -13,9 +13,11 @@ References:
 - LaTeX in this Readme: [https://latex.codecogs.com/](https://latex.codecogs.com/) (set svg and HTML)
 
 ## Prerequisites
-In order to compile the project, you must install 
+In order to compile the project, you must install the following libraries
 -  [Boost](#boost)
 -  [Eigen](#eigen)
+
+as well as having [support](#cxx20-compiler) for C++20 features.
 ### Boost
 At this stage, Boost is only used to run unit testing.
 
@@ -83,4 +85,28 @@ if(WIN32)
 endif()
 include_directories(${EIGEN_DIR})
  ```
+### CXX20 compiler
+#### Windows
+No need to do anything if you are using VS2022
+#### Linux (Ubuntu 20.4)
+Ubuntu 20.4 comes with GCC9 installed and unfortunately this does not support C++20.
+Support for C++20 features like `concepts` and `requires` can be obtained by:
+1. Installing GCC10. In order to do this, run the following
+```unix
+sudo apt install -y gcc-10 g++-10 cpp-10
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 100 --slave /usr/bin/g++ g++ /usr/bin/g++-10 --slave /usr/bin/gcov gcov /usr/bin/gcov-10
+```
+2. Specifying the new compiler in CMake. This must be done before naming the project, in the main `CMakelists.txt` file:
+```cmake
+cmake_minimum_required (VERSION 3.8)
+if(UNIX)
+    set(CMAKE_CXX_COMPILER "/usr/bin/g++-10") 
+    set(CMAKE_CXX_FLAGS -std=c++2a)
+endif()
+
+project ("MC-QFin")
+```
+
+Note: you might have to delete `CMakeCache.txt` for `CMAKE_CXX_COMPILER` to be correctly updated.
+
 
