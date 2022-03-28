@@ -46,5 +46,8 @@ namespace mc
 			return true_this().diffusion(state);
 		}
 	};
+    
+    template<class T>
+    concept stochprocess_type = std::is_base_of_v<stoch_process<T>,T>;
 
 }
