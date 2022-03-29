@@ -2,15 +2,6 @@
 
 namespace utils
 {
-	template<extrapolation_type E>
-	class dummy_interp : public base_interp1d<dummy_interp, E>
-	{
-	public:
-		double interpolate(double t) const
-		{
-			return 1.0;
-		}
-	};
 
 	template<extrapolation_type E>
 	class pwc_interp : public base_interp1d<pwc_interp, E>

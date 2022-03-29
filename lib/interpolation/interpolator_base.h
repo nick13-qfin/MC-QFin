@@ -43,14 +43,6 @@ namespace utils
 		}
 
 	};
-
-        
-	template<class full_interp_t>
-	concept interp_type = requires (full_interp_t f, double a)
-	{
-		f.interpolate(a);
-	};
-
     
     template <template<class> class concrete, extrapolation_type T>
     std::true_type is_interp_func(base_interp1d<concrete,T>*);
@@ -58,12 +50,18 @@ namespace utils
     std::false_type is_interp_func(...);
     
     template<class T>
-    struct is_interp2 : decltype(is_interp_func(std::declval<T*>())) {};
+    struct is_interp : decltype(is_interp_func(std::declval<T*>())) {};
     
     template<class T>
-    concept interp_type2 = is_interp2<T>::value;
+    concept interp_type = is_interp<T>::value;
     
-    
+	//alternative concept defintion - duck typing-esque?
+	template<class full_interp_t>
+	concept interp_type2 = requires (full_interp_t f, double a)
+	{
+		f.interpolate(a);
+	};
+
 
 
 

@@ -28,7 +28,7 @@ BOOST_AUTO_TEST_CASE(compiletimecheck)
 {
 
 //     utils::pwc_interp<utils::unchecked_boundaries>
-    auto test2 = utils::is_interp2<utils::pwc_interp<utils::unchecked_boundaries>>::value;
+    auto test2 = utils::is_interp<utils::pwc_interp<utils::unchecked_boundaries>>::value;
     BOOST_CHECK_EQUAL(test2, true);
     
 }
