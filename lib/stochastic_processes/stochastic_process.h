@@ -36,12 +36,12 @@ namespace mc
 			return true_this().get_x0();
 		}
 
-		double drift(const dummy_state& state) const
+		double drift(const markovian_state& state) const
 		{
 			return true_this().drift(state);
 		}
 
-		double diffusion(const dummy_state& state) const
+		double diffusion(const markovian_state& state) const
 		{
 			return true_this().diffusion(state);
 		}

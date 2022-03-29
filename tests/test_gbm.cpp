@@ -13,8 +13,8 @@ BOOST_AUTO_TEST_CASE(gbmtest1)
 	mc::constant_param p();
 	
     gbm_t gbm(0.1, 0.2, 0.0);
-    
-    mc::dummy_state state(0.0, std::vector<double>{2.0});
+    auto v = std::vector<double>{ 2.0 };
+    mc::markovian_state state(0.0, v);
     
     const auto drift_term = gbm.drift(state);
     const auto vol_term = gbm.diffusion(state);
@@ -32,7 +32,8 @@ BOOST_AUTO_TEST_CASE(gbmtest2)
     gbm_t gbm(0.1, 0.2, 0.0, reset_processes);
     gbm_t gbm_2nd(0.1, 0.2, 0.0); // this will break with a single state
     
-    mc::dummy_state state(0.0, std::vector<double>{2.0, 1.0});
+    auto v = std::vector<double>{2.0, 1.0};
+    mc::markovian_state state(0.0, v);
     const auto drift_term = gbm_2nd.drift(state);
     const auto vol_term = gbm_2nd.diffusion(state);
     

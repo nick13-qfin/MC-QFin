@@ -18,7 +18,7 @@ namespace mc
             return static_cast<const derived_param_t&>(*this);
         }
         
-        double value(const dummy_state& state) const
+        double value(const markovian_state& state) const
         {
             return true_this().value(state);
         }
@@ -30,7 +30,7 @@ namespace mc
         
     public:
         constant_param(double par) : par_(par) {};
-        double value(const dummy_state& state) const
+        double value(const markovian_state& state) const
         {
             return par_;
         }
@@ -60,7 +60,7 @@ namespace mc
 
         time_dep_param(std::unique_ptr<I>&& par) : par_(std::move(par)) {};
 
-        double value(const dummy_state& state) const
+        double value(const markovian_state& state) const
         {
             const double t = state.get_t();
             return par_->interpolate(t);
@@ -71,7 +71,7 @@ namespace mc
     template<class par_t>
 	double consume_parameter(const base_param<par_t>& par)
     {
-        const dummy_state state(0.0, std::vector<double>(1));
+        const markovian_state state(0.0, std::vector<double>(1));
         return par.value(state);
     }
     

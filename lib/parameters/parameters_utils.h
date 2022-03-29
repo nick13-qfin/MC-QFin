@@ -4,7 +4,7 @@
 namespace mc
 {
 	template<class T>
-	concept param_type = requires (T p, const dummy_state & state)
+	concept param_type = requires (T p, const markovian_state & state)
 	{
 		p.value(state);
 	};

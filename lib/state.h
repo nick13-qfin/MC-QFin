@@ -3,46 +3,29 @@
 
 namespace mc
 {
+ 
     /*
-     * Maybe it doesn't need any hyerarchy
-     * This might just be the markovian state + time 
-     */
-    
-    template <class derived_state_t>
-    class base_state
-    {
-        Eigen::MatrixXd state_;
-    public:
-        const derived_state_t& true_this() const
-        {
-            return static_cast<const derived_state_t&>(*this);
-        }
+    Mutable class
+    The state can be changed. This is needed to be able to point to a given column in the 
+    realization of a mc simulation
 
-        derived_state_t& true_this()
-        {
-            return static_cast<derived_state_t&>(*this);
-        }
+    It is expected to be consumed const by parameters and owned (non-const) by a mc_path (also, non-const)
+    */
 
-        double get_t() const
-        {
-            return true_this().time();
-        }
-
-        double operator[](size_t index) const
-        {
-            return true_this().operator[](index);
-
-        }
-    };
-
-    class dummy_state : public base_state<dummy_state>
+    class markovian_state 
     {
         double t_;
-        std::vector<double> x_;
+        std::vector<double> dummy_state_;
+        Eigen::Map<Eigen::VectorXd> x_;
 
     public:
-        dummy_state(double t, const std::vector<double>& x) : t_(t), x_(x) {}
-        dummy_state(double t, std::vector<double>&& x) : t_(t), x_(std::move(x)) {}
+        markovian_state(double t, Eigen::VectorXd& x) : t_(t), dummy_state_(), x_(x.data(), x.size()) {}
+        markovian_state(double t, std::vector<double>& x) : t_(t), dummy_state_(x), 
+            x_(dummy_state_.data(), dummy_state_.size()) {}
+        markovian_state(double t, std::vector<double>&& x) : t_(t), dummy_state_(std::move(x)),
+            x_(dummy_state_.data(), dummy_state_.size()) {}
+        markovian_state(size_t n_states) : markovian_state(0.0, std::vector<double>(n_states, 0.0)) {}
+
         double get_t() const
         {
             return t_;
@@ -52,6 +35,16 @@ namespace mc
         {
             return x_[index];
 
+        }
+
+        void set_state(Eigen::Map<Eigen::MatrixXd>& matrix, size_t col)
+        {
+            new (&x_) Eigen::Map<Eigen::VectorXd>(matrix.data() + matrix.rows() * (col), matrix.cols());
+        }
+
+        size_t n_states() const
+        {
+            return x_.size();
         }
         
 

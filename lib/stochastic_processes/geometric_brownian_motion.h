@@ -28,7 +28,7 @@ namespace mc
             std::make_unique<constant_param>(mu),
             std::make_unique<constant_param>(vol), x0, reset) {};
 
-		double drift(const dummy_state& state) const
+		double drift(const markovian_state& state) const
 		{
 			if constexpr (std::is_same_v <null_param, mu_t>)
 			{
@@ -41,7 +41,7 @@ namespace mc
 			}
 		}
 
-		double diffusion(const dummy_state& state) const
+		double diffusion(const markovian_state& state) const
 		{
 			const double x_t = state[this_index_];
 			return x_t * vol_->value(state);

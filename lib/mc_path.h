@@ -1,21 +1,37 @@
 #pragma once
 #include <Eigen/Dense>
+#include "state.h"
 
 namespace mc
 {
     /*
-     * mutable object - to be held by the mc engine
+     * mutable object - to be owned by the mc engine
      */
     
     class mc_path
     {
-        size_t n_processes_;
-        size_t n_times_;
-        Eigen::MatrixXd m_;
+        Eigen::Index n_processes_;
+        Eigen::Index n_times_;
+        Eigen::Map<Eigen::MatrixXd> m_;
+        markovian_state state_;
+
+
     public:
-        mc_path(size_t n_processes, size_t n_times)
-        : n_processes_{n_processes}, n_times_{n_times}, m_{Eigen::MatrixXd(n_processes_, n_times_)}
+        mc_path(Eigen::MatrixXd& m)
+            : n_processes_{ m.rows()}, n_times_{m.cols()}, m_(m.data(), n_processes_, n_times_),
+            state_(n_processes_)
         {}
+
+        const markovian_state& get_state(size_t i) 
+        {
+            state_.set_state(m_, i);
+            return state_;
+        }
+
+        void set_path_value(double value, size_t row, size_t col)
+        {
+            m_(row, col) = value;
+        }
     };
 }
 

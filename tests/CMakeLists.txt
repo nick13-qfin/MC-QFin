@@ -53,11 +53,16 @@ add_test(NAME ti COMMAND interp)
 
 add_executable (gbm  "test_gbm.cpp")
 target_link_libraries(gbm ${Boost_LIBRARIES})
-# tell CMake to use CTest extension
 add_test(NAME tg COMMAND gbm)
 
 add_executable (mc_path test_mc_path.cpp  )
 target_link_libraries(mc_path ${Boost_LIBRARIES})
 add_test(NAME tmcp COMMAND mc_path)
 
+add_executable (state "test_state.cpp"  )
+target_link_libraries(state ${Boost_LIBRARIES})
+add_test(NAME ts COMMAND state)
 
+add_executable (eigen "test_eigen.cpp"  )
+target_link_libraries(eigen ${Boost_LIBRARIES})
+add_test(NAME te COMMAND eigen)
