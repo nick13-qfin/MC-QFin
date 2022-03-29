@@ -44,5 +44,14 @@ BOOST_AUTO_TEST_CASE(gbmtest2)
 
 }
 
+BOOST_AUTO_TEST_CASE(staticcheck)
+{
+    
+
+
+    //     BOOST_CHECK_THROW (const auto drift_term = gbm_2nd.drift(state), std::out_of_range);
+
+}
+
 
 BOOST_AUTO_TEST_SUITE_END()

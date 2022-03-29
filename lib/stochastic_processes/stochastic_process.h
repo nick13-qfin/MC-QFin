@@ -1,5 +1,5 @@
 #pragma once
-#include "../state.h"
+#include "../mc_representation/state.h"
 
 namespace mc
 {
@@ -44,6 +44,11 @@ namespace mc
 		double diffusion(const markovian_state& state) const
 		{
 			return true_this().diffusion(state);
+		}
+
+		size_t get_index() const
+		{
+			return true_this().get_index();
 		}
 	};
     

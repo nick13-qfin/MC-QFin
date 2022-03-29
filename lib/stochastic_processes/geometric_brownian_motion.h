@@ -47,5 +47,11 @@ namespace mc
 			return x_t * vol_->value(state);
 		}
 
+		size_t get_index() const
+		{
+			// needed by the scheme
+			return this_index_;
+		}
+
 	};
 }

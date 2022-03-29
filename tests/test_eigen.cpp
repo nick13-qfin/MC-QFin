@@ -5,6 +5,16 @@
 
 BOOST_AUTO_TEST_SUITE(eigen)
 
+BOOST_AUTO_TEST_CASE(stdvector)
+{
+    std::vector<double> v{0.1, 0.2, 0.3};
+    auto p = v.begin();
+    auto d = *p;
+
+    BOOST_CHECK_EQUAL(d, v[0]);
+
+}
+
 
 BOOST_AUTO_TEST_CASE(mapvector)
 {

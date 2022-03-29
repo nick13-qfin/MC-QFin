@@ -3,7 +3,7 @@
 
 
 #include <boost/test/unit_test.hpp>
-#include "../lib/mc_path.h"
+#include "../lib/mc_representation/mc_path.h"
 
 BOOST_AUTO_TEST_SUITE(mcpath)
 

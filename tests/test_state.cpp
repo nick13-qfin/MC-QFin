@@ -1,7 +1,7 @@
 #define BOOST_TEST_MODULE state test
 
 #include <boost/test/unit_test.hpp>
-#include "../lib/state.h"
+#include "../lib/mc_representation/state.h"
 #include <stdexcept>
 
 
@@ -13,8 +13,8 @@ BOOST_AUTO_TEST_CASE(defaultstate)
     mc::markovian_state state(n_states);
     BOOST_CHECK_EQUAL(state.n_states(), n_states);
 
-    //for(size_t i = 0; i < n_states; ++i)
-        //BOOST_CHECK_THROW(state[i], std::runtime_error);
+    for(size_t i = 0; i < n_states; ++i)
+        BOOST_CHECK_EQUAL(state[i], 0.0);
 }
 
 BOOST_AUTO_TEST_CASE(setstate)

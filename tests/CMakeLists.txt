@@ -66,3 +66,7 @@ add_test(NAME ts COMMAND state)
 add_executable (eigen "test_eigen.cpp"  )
 target_link_libraries(eigen ${Boost_LIBRARIES})
 add_test(NAME te COMMAND eigen)
+
+add_executable (evol "test_evol_scheme.cpp"  )
+target_link_libraries(evol ${Boost_LIBRARIES})
+add_test(NAME tev COMMAND evol)
