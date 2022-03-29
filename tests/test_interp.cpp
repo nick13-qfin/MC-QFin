@@ -4,6 +4,7 @@
 
 #include <boost/test/unit_test.hpp>
 #include "../lib/interpolation/interpolator_base.h"
+#include "../lib/interpolation/pwc_interpolator.h"
 
 
 BOOST_AUTO_TEST_SUITE(interp)

@@ -12,7 +12,7 @@ namespace mc
     {
         Eigen::Index n_processes_;
         Eigen::Index n_times_;
-        Eigen::Map<Eigen::MatrixXd> m_;
+        Eigen::Map<Eigen::MatrixXd> m_; // there is going to be only one matrix
         markovian_state state_;
 
 
