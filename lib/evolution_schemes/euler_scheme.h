@@ -6,7 +6,7 @@
 namespace mc
 {
     template<stochprocess_type S>
-    class euler_scheme : public evolution_scheme<euler_scheme<S>>
+    class euler_scheme : public evolution_scheme<euler_scheme<S>, S>
     {
         mc::timeline time_;
         std::unique_ptr<S> process_; // TODO: maybe shared e.g. stoch param?
@@ -32,6 +32,11 @@ namespace mc
                     + process_->diffusion(x_old) * sqrt_dt * wieners[i - 1];
                 out_path.set_path_value(xt, nth_row_, i);
             }
+        }
+
+        const S& get_process() const
+        {
+            return *process_;
         }
     };
 }

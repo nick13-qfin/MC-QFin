@@ -5,7 +5,7 @@
 
 namespace mc
 {
-    template<class derived_scheme>
+    template<class derived_scheme, stochprocess_type S>
     class evolution_scheme
     {
     public:
@@ -20,11 +20,26 @@ namespace mc
         {
             true_this().evolve(out_path, wieners);
         }
+
+        const S& get_process() const
+        {
+            return true_this().get_process();
+        }
         
     };
     
-   template<class T>
-   concept ev_scheme_type = std::is_base_of_v<evolution_scheme<T>, T>;
+    template<template<class> class S, class P>
+    std::true_type is_scheme_func(evolution_scheme<S<P>, P>*);
+
+    std::false_type is_scheme_func(...);
+
+    template<class S>
+    struct is_scheme : decltype(is_scheme_func(std::declval<S*>())) {};
+
+
+    template<class T>
+    concept ev_scheme_type = is_scheme<T>::value;
+        //std::is_base_of_v<evolution_scheme<T>, T>;
     
     
 }
