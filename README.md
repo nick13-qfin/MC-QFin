@@ -8,7 +8,7 @@ Currently it is tested on:
 
 ## Table of contents
 - [Prerequisites](#prerequisites)
-- [Issues](#issues)
+- [Open points](#open-points)
 
 References:
 - LaTeX in this Readme: [https://latex.codecogs.com/](https://latex.codecogs.com/) (set svg and HTML)
@@ -110,7 +110,7 @@ project ("MC-QFin")
 
 Note: you might have to delete `CMakeCache.txt` for `CMAKE_CXX_COMPILER` to be correctly updated.
 
-## Issues
+## Open points
 ### Dates handling
 I am exploring using `std::chrono` new C++20 features, like `chrono::year_month_day` which looks promising.
 However, while this is currently supported in VS2022, it is still under development work in GCC.
@@ -118,4 +118,7 @@ However, while this is currently supported in VS2022, it is still under developm
 Useful resources:
 - GCC current lib book of work -> [here](https://gcc.gnu.org/onlinedocs/libstdc++/manual/status.html#status.iso.2020);
 - a date headers-only library that might be used as a replacement in the meantime -> [here](https://github.com/HowardHinnant/date).
+
+### .cpp/.h
+Currently the lib is made of headers only. It would make sense though, to move into source (cpp) files some classes definitions, e.g [mc_path](/lib/mc_representation/mc_path.h).
 
