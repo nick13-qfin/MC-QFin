@@ -28,7 +28,7 @@ namespace mc
         
     };
     
-    template<template<class> class S, class P>
+    template<template<class> class S, stochprocess_type P>
     std::true_type is_scheme_func(evolution_scheme<S<P>, P>*);
 
     std::false_type is_scheme_func(...);
