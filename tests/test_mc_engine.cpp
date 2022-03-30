@@ -29,7 +29,7 @@ BOOST_AUTO_TEST_CASE(tuple)
 	auto gbm2 = std::make_unique<gbm_t>(0.01, 0.1, 0.0); 
 	auto scheme2 = std::make_unique<mc::euler_scheme<gbm_t>>(0, 1, 0.1, std::move(gbm2));
 
-	mc::mc_engine< mc::euler_scheme<gbm_t>> engine(std::move(scheme), std::move(scheme2));
+	//mc::mc_engine< mc::euler_scheme<gbm_t>> engine(std::move(scheme), std::move(scheme2));
 
 	BOOST_CHECK_EQUAL(0.0, 0.0);
 
