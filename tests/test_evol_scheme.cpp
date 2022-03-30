@@ -19,6 +19,19 @@ BOOST_AUTO_TEST_CASE(timeline)
 
 }
 
+BOOST_AUTO_TEST_CASE(constructor)
+{
+    mc::timeline t(0, 1, 0.1);
+    auto n = t.get_n(); // todo wrong
+    auto gbm = std::make_unique<gbm_t>(0.2, 0.2, 0.0);
+
+    mc::euler_scheme<gbm_t> scheme(0.0, 1.0, 0.1, std::move(gbm));
+
+    BOOST_CHECK_EQUAL(t.get_time(0), 0.0);
+    BOOST_CHECK_EQUAL(t.get_time(n - 1), 1.0);
+
+}
+
 
 
 
