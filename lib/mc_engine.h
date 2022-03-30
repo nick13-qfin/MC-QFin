@@ -22,6 +22,8 @@ namespace mc
         {
             std::apply([&](auto&... args) {((
                 n_diffusions_+=args->get_process().get_n_diffusions()), ...); }, schemes_);
+
+            //check timeline in schemes is the same?
         }
             
             
