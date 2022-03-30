@@ -11,13 +11,18 @@ namespace mc
 	class mc_engine
 	{
 		std::tuple<std::unique_ptr<E>...> schemes_;
-        std::shared_ptr<timeline> timeline_;
+        size_t n_diffusions_ = 0;
+        std::shared_ptr<timeline> timeline_; // probably not needed
         Eigen::MatrixXd single_path_;
         
 
 	public:
 		mc_engine(std::unique_ptr<E>&&... schemes)
-            : schemes_(std::make_tuple(std::move(schemes)...)) {}
+            : schemes_(std::make_tuple(std::move(schemes)...)) 
+        {
+            std::apply([&](auto&... args) {((
+                n_diffusions_+=args->get_process().get_n_diffusions()), ...); }, schemes_);
+        }
             
             
         void calculate(/*function repr , n_simulation*/)
