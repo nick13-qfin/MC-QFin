@@ -8,12 +8,13 @@ namespace mc
     class timeline
     {
         std::vector<double> times_;
-        std::vector<std::chrono::year_month_day> dates_;
+//         std::vector<std::chrono::year_month_day> dates_;
         size_t n_elems_;
         std::vector<double> dt_;
         std::vector<double> sqrt_dt_;
 
     public:
+        //TODO: this needs a constructor based on dates
         timeline(double t0, double tN, double dt)
             //: times_(), dates_()
         {
@@ -40,10 +41,10 @@ namespace mc
             }
         }
 
-        size_t get_date_index(const std::chrono::year_month_day& date) const
-        {
-            return -1;
-        }
+//         size_t get_date_index(const std::chrono::year_month_day& date) const
+//         {
+//             return -1;
+//         }
 
         size_t get_time_indes(double time) const
         {
