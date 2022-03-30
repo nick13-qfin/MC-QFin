@@ -39,34 +39,35 @@ include_directories(${Boost_INCLUDE_DIRS})
 message(STATUS "boost Library ${Boost_LIBRARIES}")
 message(STATUS "boost unit test  ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}")
 
+message(STATUS "current dir ====== ${CMAKE_CURRENT_SOURCE_DIR} ")
+
+file(GLOB TEST_SRCS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.cpp)
+#Run through each source
+foreach(testSrc ${TEST_SRCS})
+    message(STATUS "current filename ====== ${testSrc} ")
+    #Extract the filename without an extension (NAME_WE)
+    get_filename_component(testName ${testSrc} NAME_WE)
+    message(STATUS "current testname ====== ${testName} ")
+    string(REPLACE test_ "" shname ${testName})
+    message(STATUS "current testname ====== ${shname} ")
+
+    #Add compile target
+    add_executable(${shname} ${testSrc})
+    #link to Boost libraries AND your targets and dependencies
+    target_link_libraries(${shname} ${Boost_LIBRARIES})
+    add_test(NAME ${shname} COMMAND ${shname})
+
+    #add_test(NAME ${testName} COMMAND ${testName})
+    ##I like to move testing binaries into a testBin directory
+    #set_target_properties(${testName} PROPERTIES
+    #    RUNTIME_OUTPUT_DIRECTORY  ${CMAKE_CURRENT_SOURCE_DIR}/testBin)
+    ##Finally add it to test execution -
+    ##Notice the WORKING_DIRECTORY and COMMAND
+    #add_test(NAME ${testName}
+    #            WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/testBin
+    #            COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/testBin/${testName} )
+    
+endforeach(testSrc)
 
 
-# Add source to this project's executable.
-add_executable (param "test_param.cpp"  )
-target_link_libraries(param ${Boost_LIBRARIES})
-# tell CMake to use CTest extension
-add_test(NAME tp COMMAND param)
 
-add_executable (interp test_interp.cpp  )
-target_link_libraries(interp ${Boost_LIBRARIES})
-add_test(NAME ti COMMAND interp)
-
-add_executable (gbm  "test_gbm.cpp")
-target_link_libraries(gbm ${Boost_LIBRARIES})
-add_test(NAME tg COMMAND gbm)
-
-add_executable (mc_path test_mc_path.cpp  )
-target_link_libraries(mc_path ${Boost_LIBRARIES})
-add_test(NAME tmcp COMMAND mc_path)
-
-add_executable (state "test_state.cpp"  )
-target_link_libraries(state ${Boost_LIBRARIES})
-add_test(NAME ts COMMAND state)
-
-add_executable (eigen "test_eigen.cpp"  )
-target_link_libraries(eigen ${Boost_LIBRARIES})
-add_test(NAME te COMMAND eigen)
-
-add_executable (evol "test_evol_scheme.cpp"  )
-target_link_libraries(evol ${Boost_LIBRARIES})
-add_test(NAME tev COMMAND evol)
