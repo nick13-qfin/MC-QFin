@@ -16,8 +16,8 @@ namespace mc
     public:
 
         euler_scheme(double t0, double tN, double dt, std::unique_ptr<S>&& process)
-            : time_(t0, tN, dt), process_(std::move(process)), 
-            nth_row_{ process_->get_index() }, n_times_{ time_.get_n() } {}
+            : time_(t0, tN, dt), process_(std::move(process)),
+            nth_row_{ process_->get_index() }, n_times_{ time_.get_n() } {};
 
         template<class vector_t> // TODO: it depends on RNG choice
         void evolve(mc_path& out_path, const vector_t& wieners) const
@@ -28,8 +28,7 @@ namespace mc
                 const auto sqrt_dt = time_.get_sqrtdt(i - 1);
                 const auto dt = time_.get_dt(i - 1);
                 const auto x_old = out_path.get_state(i - 1);
-                double xt = x_old[nth_row_]
-                    + process_->drift(x_old) * dt
+                double xt = x_old[nth_row_] + process_->drift(x_old) * dt
                     + process_->diffusion(x_old) * sqrt_dt * wieners[i - 1];
                 out_path.set_path_value(xt, nth_row_, i);
             }

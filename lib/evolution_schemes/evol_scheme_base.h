@@ -23,7 +23,8 @@ namespace mc
         
     };
     
-   
+   template<class T>
+   concept ev_scheme_type = std::is_base_of_v<evolution_scheme<T>, T>;
     
     
 }
