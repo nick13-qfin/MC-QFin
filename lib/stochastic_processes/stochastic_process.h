@@ -50,6 +50,11 @@ namespace mc
 		{
 			return true_this().get_index();
 		}
+
+		size_t get_n_diffusions() const
+		{
+			return true_this().get_n_diffusions();
+		}
 	};
     
     template<class T>

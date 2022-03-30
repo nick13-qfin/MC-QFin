@@ -53,5 +53,10 @@ namespace mc
 			return this_index_;
 		}
 
+		size_t get_n_diffusions() const
+		{
+			return 1;
+		}
+
 	};
 }
