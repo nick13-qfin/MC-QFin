@@ -15,7 +15,7 @@ namespace mc
 		size_t this_index_;
 		using base = stoch_process<geometric_brownian_motion<mu_t, vol_t>>;
 	public:
-		geometric_brownian_motion(std::unique_ptr<mu_t>&& mu, std::unique_ptr<vol_t> vol, double x0, bool reset = false)
+		geometric_brownian_motion(std::unique_ptr<mu_t>&& mu, std::unique_ptr<vol_t>&& vol, double x0, bool reset = false)
 			:
 			base(reset), mu_(std::move(mu)), vol_(std::move(vol)) , x0_(x0)
 		{
