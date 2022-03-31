@@ -12,9 +12,9 @@ namespace mc
 	{
 		std::tuple<std::unique_ptr<E>...> schemes_;
         size_t n_diffusions_ = 0;
+        size_t n_steps_ = 0;
         std::shared_ptr<timeline> timeline_; // probably not needed
-        Eigen::MatrixXd single_path_;
-        
+
 
 	public:
 		mc_engine(std::unique_ptr<E>&&... schemes)
@@ -23,15 +23,22 @@ namespace mc
             std::apply([&](auto&... args) {((
                 n_diffusions_+=args->get_process().get_n_diffusions()), ...); }, schemes_);
 
+            auto n_schemes = sizeof...(E);
+            std::vector<size_t> tmp(n_schemes, 0.0);
+            size_t i = 0;
+            std::apply([&](auto&... args) {((
+                tmp[i++] = args->get_n_times()), ...); }, schemes_);
+
             //check timeline in schemes is the same?
         }
             
             
         void calculate(/*function repr , n_simulation*/)
         {
-            mc::mc_path path(single_path_);
+            Eigen::MatrixXd master_path(n_diffusions_, n_steps_);
+            Eigen::MatrixXd wieners(n_diffusions_, n_steps_ - 1);
+            mc::mc_path path(master_path);
             //wieners <-
-            std::vector<double> wieners;
             std::apply([&](auto&... ts){(ts->evolve(path, wieners), ...);}, schemes_);
         }
 	};
