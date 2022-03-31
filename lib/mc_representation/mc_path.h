@@ -32,6 +32,16 @@ namespace mc
         {
             m_(row, col) = value;
         }
+
+        size_t get_n_times() const
+        {
+            return n_times_;
+        }
+
+        double get_element(size_t i, size_t j) const
+        {
+            return m_(i, j);
+        }
     };
 }
 
