@@ -43,7 +43,7 @@ BOOST_AUTO_TEST_CASE(constr_tuple)
 
 BOOST_AUTO_TEST_CASE(calculate)
 {
-	auto gbm = std::make_unique<gbm_t>(0.01, 0.2, 0.0, true);
+	auto gbm = std::make_unique<gbm_t>(0.01, 0.2, 1.0, true);
 	auto scheme = std::make_unique<mc::euler_scheme<gbm_t>>(0, 1, 0.1, std::move(gbm));
 
     auto x = std::vector<double>{0.0, 1.0};
