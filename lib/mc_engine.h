@@ -3,6 +3,7 @@
 #include "mc_representation/time_line.h"
 #include "mc_representation/mc_path.h"
 #include "mc_representation/payoff.h"
+#include "mc_representation/output_report.h"
 #include <tuple>
 #include <memory>
 
@@ -14,6 +15,7 @@ namespace mc
 		std::tuple<std::unique_ptr<E>...> schemes_;
         size_t n_diffusions_ = 0;
         size_t n_steps_ = 0;
+        size_t n_sims_ = 2;
         std::shared_ptr<timeline> timeline_; // probably not needed
 
 
@@ -34,16 +36,22 @@ namespace mc
         }
             
         template<class payoff_t>
-        void calculate(const payoff_t& payoff/*function repr , n_simulation*/)
+        mc_report calculate(const payoff_t& payoff/*function repr , n_simulation*/)
         {
             Eigen::MatrixXd master_path(n_diffusions_, n_steps_);
+            //wieners <-
             Eigen::MatrixXd wieners(n_diffusions_, n_steps_ - 1);
             mc::mc_path path(master_path);
-            
-            //wieners <-
-            size_t i = 0;
-            std::apply([&](auto&... ts){(ts->evolve(path, wieners.row(i++)), ...);}, schemes_);
-            auto result = payoff(path);
+            mc_report output{};
+
+            for (size_t n = 0; n < n_sims_; n++)
+            {
+                size_t i = 0;
+                std::apply([&](auto&... ts) {(ts->evolve(path, wieners.row(i++)), ...); }, schemes_);
+                auto result = payoff(path);
+                output.add_result(result);
+            }
+            return output;
         }
 	};
     
