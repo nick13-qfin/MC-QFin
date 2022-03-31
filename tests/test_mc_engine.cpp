@@ -54,7 +54,8 @@ BOOST_AUTO_TEST_CASE(calculate)
     
     auto mc_engine = mc::make_mcengine(std::move(scheme), std::move(scheme2));
 
-//     mc_engine.calculate();
+	mc::dummy_payoff payoff{};
+	auto result = mc_engine.calculate(payoff);
     
 }
 
