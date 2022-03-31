@@ -23,7 +23,7 @@ namespace mc
         void evolve(mc_path& out_path, const vector_t& wieners) const
         {
             out_path.set_path_value(process_->get_x0(), nth_row_, 0);
-            for (size_t i = i; i < n_times_; i++)
+            for (size_t i = 1; i < n_times_; i++)
             {
                 const auto sqrt_dt = time_.get_sqrtdt(i - 1);
                 const auto dt = time_.get_dt(i - 1);
