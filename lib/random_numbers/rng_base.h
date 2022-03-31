@@ -7,17 +7,17 @@ namespace mc
 	class rng_base
 	{
 	public:
-		const derived& true_this() const
+		derived& true_this() 
 		{
-			return static_cast<const derived&>(*this);
+			return static_cast<derived&>(*this);
 		}
 
-		double next() const
+		double next()
 		{
 			return true_this().next();
 		}
 
-		void fill_matrix(Eigen::MatrixXd& out_matrix, size_t n_rows, size_t n_cols) const
+		void fill_matrix(Eigen::MatrixXd& out_matrix, size_t n_rows, size_t n_cols)
 		{
 			for (size_t i = 0; i < n_rows; i++)
 			{
