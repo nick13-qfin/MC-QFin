@@ -46,6 +46,11 @@ namespace mc
 			const double x_t = state[this_index_];
 			return x_t * vol_->value(state);
 		}
+		
+		double get_x0() const
+		{
+			return x0_;
+		}
 
 		size_t get_index() const
 		{
