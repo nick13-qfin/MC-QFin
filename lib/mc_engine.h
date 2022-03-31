@@ -4,6 +4,7 @@
 #include "mc_representation/mc_path.h"
 #include "mc_representation/payoff.h"
 #include "mc_representation/output_report.h"
+#include "random_numbers/norm_rng.h"
 #include <tuple>
 #include <memory>
 
@@ -17,6 +18,7 @@ namespace mc
         size_t n_steps_ = 0;
         size_t n_sims_ = 2;
         std::shared_ptr<timeline> timeline_; // probably not needed
+
 
 
 	public:
@@ -39,13 +41,14 @@ namespace mc
         mc_report calculate(const payoff_t& payoff/*function repr , n_simulation*/)
         {
             Eigen::MatrixXd master_path(n_diffusions_, n_steps_);
-            //wieners <-
             Eigen::MatrixXd wieners(n_diffusions_, n_steps_ - 1);
-            mc::mc_path path(master_path);
+            mc_path path(master_path);
             mc_report output{};
+            normal_rng rand{ 1 };
 
             for (size_t n = 0; n < n_sims_; n++)
             {
+                rand.fill_matrix(wieners, n_diffusions_, n_steps_ - 1);
                 size_t i = 0;
                 std::apply([&](auto&... ts) {(ts->evolve(path, wieners.row(i++)), ...); }, schemes_);
                 auto result = payoff(path);
