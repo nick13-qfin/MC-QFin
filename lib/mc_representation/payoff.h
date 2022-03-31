@@ -24,7 +24,10 @@ namespace mc
     public:
         double operator()(const mc_path& path) const
         {
-            return 1.0;
+            
+            auto ST = path.get_element(0, path.get_n_times() - 1);
+            auto intrinsic = ST - 1.0;
+            return intrinsic > 0.0 ? intrinsic : 0.0;
         }
     };
 }
