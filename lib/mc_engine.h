@@ -2,6 +2,7 @@
 #include "evolution_schemes/evol_scheme_base.h"
 #include "mc_representation/time_line.h"
 #include "mc_representation/mc_path.h"
+#include "mc_representation/payoff.h"
 #include <tuple>
 #include <memory>
 
@@ -28,18 +29,21 @@ namespace mc
             size_t i = 0;
             std::apply([&](auto&... args) {((
                 tmp[i++] = args->get_n_times()), ...); }, schemes_);
-
+            n_steps_ = tmp[0];
             //check timeline in schemes is the same?
         }
             
-            
-        void calculate(/*function repr , n_simulation*/)
+        template<class payoff_t>
+        void calculate(const payoff_t& payoff/*function repr , n_simulation*/)
         {
             Eigen::MatrixXd master_path(n_diffusions_, n_steps_);
             Eigen::MatrixXd wieners(n_diffusions_, n_steps_ - 1);
             mc::mc_path path(master_path);
+            
             //wieners <-
-            std::apply([&](auto&... ts){(ts->evolve(path, wieners), ...);}, schemes_);
+            size_t i = 0;
+            std::apply([&](auto&... ts){(ts->evolve(path, wieners.row(i++)), ...);}, schemes_);
+            auto result = payoff(path);
         }
 	};
     
