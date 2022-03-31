@@ -26,6 +26,10 @@ namespace mc
             return true_this().get_process();
         }
         
+        size_t get_n_times() const
+        {
+            return true_this().get_n_times();
+        }
     };
     
     template<template<class> class S, stochprocess_type P>

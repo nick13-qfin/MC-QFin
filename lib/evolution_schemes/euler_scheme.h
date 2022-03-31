@@ -38,5 +38,10 @@ namespace mc
         {
             return *process_;
         }
+
+        size_t get_n_times() const
+        {
+            return n_times_;
+        }
     };
 }
