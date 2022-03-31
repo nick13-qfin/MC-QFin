@@ -122,3 +122,5 @@ Useful resources:
 ### .cpp/.h
 Currently the lib is made of headers only. It would make sense though, to move into source (cpp) files some classes definitions, e.g [mc_path](/lib/mc_representation/mc_path.h).
 
+### Exposing it to Python
+- [pybind](https://pybind11.readthedocs.io/en/latest/)
