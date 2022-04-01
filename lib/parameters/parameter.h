@@ -2,7 +2,6 @@
 
 #include "../mc_representation/state.h"
 #include "../interpolation/interpolator_base.h"
-#include "../template_utils.h"
 #include <memory>
 
 namespace mc
