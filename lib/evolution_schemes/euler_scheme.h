@@ -11,7 +11,7 @@ namespace mc
         mc::timeline time_;
         std::unique_ptr<S> process_; // TODO: maybe shared e.g. stoch param?
         size_t n_times_;
-        size_t nth_row_;
+        size_t nth_row_ = 0;
 
     public:
 
