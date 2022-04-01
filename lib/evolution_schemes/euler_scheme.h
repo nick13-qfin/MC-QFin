@@ -10,14 +10,14 @@ namespace mc
     {
         mc::timeline time_;
         std::unique_ptr<S> process_; // TODO: maybe shared e.g. stoch param?
-        size_t nth_row_;
         size_t n_times_;
+        size_t nth_row_;
 
     public:
 
         euler_scheme(double t0, double tN, double dt, std::unique_ptr<S>&& process)
             : time_(t0, tN, dt), process_(std::move(process)),
-            nth_row_{ process_->get_index() }, n_times_{ time_.get_n() } {};
+            n_times_{ time_.get_n() } {};
 
         template<class vector_t> // TODO: it depends on RNG choice
         void evolve(mc_path& out_path, const vector_t& wieners) const
@@ -37,6 +37,12 @@ namespace mc
         const S& get_process() const
         {
             return *process_;
+        }
+
+        void set_process_index(size_t i)
+        {
+            (*process_).set_index(i);
+            nth_row_ = i;
         }
 
         size_t get_n_times() const

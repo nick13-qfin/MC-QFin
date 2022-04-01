@@ -26,6 +26,11 @@ namespace mc
             return true_this().get_process();
         }
         
+        void set_process_index(size_t i)
+        {
+            true_this().set_process_index(i);
+        }
+
         size_t get_n_times() const
         {
             return true_this().get_n_times();

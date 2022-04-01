@@ -7,23 +7,7 @@ namespace mc
 	class stoch_process
 	{
 	protected:
-		inline static size_t counter_ = 0;
-
-		void update_count()
-		{
-			counter_++;
-		}
-
-		size_t get_counter() const
-		{
-			return counter_;
-		}
-		
-		stoch_process(bool reset = false)
-        {
-            if (reset)
-                counter_ = 0;
-        }
+		size_t index_;
 
 	public:
 		const derived_proc& true_this() const
@@ -46,9 +30,15 @@ namespace mc
 			return true_this().diffusion(state);
 		}
 
+		// this is needed by the scheme
 		size_t get_index() const
 		{
-			return true_this().get_index();
+			return index_;
+		}
+
+		void set_index(size_t i)
+		{
+			index_ = i;
 		}
 
 		size_t get_n_diffusions() const
