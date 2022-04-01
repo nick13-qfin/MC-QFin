@@ -25,5 +25,12 @@ namespace mc
 					out_matrix(i, j) = next();
 			}
 		}
+
+		template<class vector_t>
+		void fill_vector(vector_t& vec, size_t n)
+		{
+			for (size_t i = 0; i < n; i++)
+				vec[i] = next();
+		}
 	};
 }
