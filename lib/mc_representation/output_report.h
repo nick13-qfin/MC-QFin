@@ -23,5 +23,13 @@ namespace mc
             return results_.size();
         }
 
+        double get_estimate() const
+        {
+            double result = 0.0;
+            for (const auto d : results_)
+                result += d;
+            return result / results_.size();
+        }
+
     };
 }
