@@ -27,9 +27,8 @@ BOOST_AUTO_TEST_CASE(gbmtest1)
 BOOST_AUTO_TEST_CASE(gbmtest2)
 {
 	mc::constant_param p();
-	bool reset_processes = true; //you need to reset the process counter
     
-    gbm_t gbm(0.1, 0.2, 0.0, reset_processes);
+    gbm_t gbm(0.1, 0.2, 0.0);
     gbm_t gbm_2nd(0.1, 0.2, 0.0); // this will break with a single state
     
     auto v = std::vector<double>{2.0, 1.0};
