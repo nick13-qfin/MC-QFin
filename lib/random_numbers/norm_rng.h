@@ -1,6 +1,7 @@
 #pragma once
 #include <random>
 #include "rng_base.h"
+#include "../utils/acklam_norm_inversion.h"
 
 namespace mc
 {
@@ -18,4 +19,24 @@ namespace mc
 			return norm_(mt_);
 		}
 	};
+
+
+	template<class unif_rng_t, utils::norm_inv_type N>
+	class normal_inv_rng : public rng_base<normal_inv_rng<unif_rng_t, N>>
+	{
+		unif_rng_t mt_;
+		N inv_;
+
+	public:
+		normal_inv_rng(unsigned seed)
+			:mt_(seed), inv_() {}
+
+		double next()
+		{
+			auto p = mt_.next();
+			auto x = inv_.invert(p);
+			return x;
+		}
+	};
+
 }
