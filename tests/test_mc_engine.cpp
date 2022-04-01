@@ -4,7 +4,7 @@
 #include "../lib/mc_engine.h"
 #include "../lib/stochastic_processes/geometric_brownian_motion.h"
 #include "../lib/evolution_schemes/euler_scheme.h"
-#include "../lib/parameters/parameter.h"
+#include "../lib/parameters/parameters_utils.h"
 #include "../lib/interpolation/pwc_interpolator.h"
 #include <tuple>
 

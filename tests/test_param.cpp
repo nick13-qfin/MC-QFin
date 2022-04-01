@@ -3,7 +3,7 @@
 
 
 #include <boost/test/unit_test.hpp>
-#include "../lib/parameters/parameter.h"
+#include "../lib/parameters/parameters_utils.h"
 #include "../lib/interpolation/pwc_interpolator.h"
 
 
