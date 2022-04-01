@@ -5,11 +5,15 @@
 #include "mc_representation/payoff.h"
 #include "mc_representation/output_report.h"
 #include "random_numbers/norm_rng.h"
+#include "random_numbers/unif_rng.h"
+#include "utils/acklam_norm_inversion.h"
 #include <tuple>
 #include <memory>
 
 namespace mc
 {
+    using normal_rng2 = normal_inv_rng < mersenne_twister, utils::acklam_inversion>;
+
 	template<ev_scheme_type... E>
 	class mc_engine
 	{
@@ -47,7 +51,7 @@ namespace mc
             Eigen::MatrixXd wieners(n_diffusions_, n_steps_ - 1);
             mc_path path(master_path);
             mc_report output{};
-            normal_rng rand{ 1 };
+            normal_rng2 rand{ 1 };
 
             for (size_t n = 0; n < n_sims_; n++)
             {
