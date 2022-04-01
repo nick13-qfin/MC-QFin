@@ -22,8 +22,8 @@ namespace mc
 
 
 	public:
-		mc_engine(std::unique_ptr<E>&&... schemes)
-            : schemes_(std::make_tuple(std::move(schemes)...)) 
+		mc_engine(size_t n_sims, std::unique_ptr<E>&&... schemes)
+            : n_sims_{ n_sims }, schemes_(std::make_tuple(std::move(schemes)...))
         {
             std::apply([&](auto&... args) {((
                 n_diffusions_+=args->get_process().get_n_diffusions()), ...); }, schemes_);
@@ -62,8 +62,8 @@ namespace mc
 	};
     
     template<ev_scheme_type... E>
-    auto make_mcengine(std::unique_ptr<E>&&... schemes)
+    auto make_mcengine(size_t n_sims, std::unique_ptr<E>&&... schemes)
     {
-        return mc_engine<E...>(std::move(schemes)...);
+        return mc_engine<E...>(n_sims, std::move(schemes)...);
     }
 }
