@@ -46,12 +46,13 @@ BOOST_AUTO_TEST_CASE(calculate)
 	auto gbm = std::make_unique<gbm_t>(0.01, 0.2, 1.0);
 	auto scheme = std::make_unique<mc::euler_scheme<gbm_t>>(0, 1, 0.1, std::move(gbm));
     
-    auto mc_engine = mc::make_mcengine(1000, std::move(scheme));
+    auto mc_engine = mc::make_mcengine(1000000, std::move(scheme));
 
 	mc::dummy_payoff payoff{};
 	auto result = mc_engine.calculate(payoff);
     
 	auto value = result.get_estimate();
+	BOOST_TEST_MESSAGE("value = " + std::to_string(value));
 	BOOST_CHECK_EQUAL(0.0, 0.0);
 }
 
