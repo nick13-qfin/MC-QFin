@@ -7,6 +7,8 @@
 #include "../lib/parameters/parameters_utils.h"
 #include "../lib/interpolation/pwc_interpolator.h"
 #include <tuple>
+#include "../lib/utils/stopwatch.h"
+
 
 BOOST_AUTO_TEST_SUITE(mcengine)
 using gbm_t = mc::geometric_brownian_motion<mc::constant_param, mc::constant_param>;
@@ -47,12 +49,15 @@ BOOST_AUTO_TEST_CASE(calculate)
 	auto scheme = std::make_unique<mc::euler_scheme<gbm_t>>(0, 1, 0.1, std::move(gbm));
     
     auto mc_engine = mc::make_mcengine(1000000, std::move(scheme));
-
+	utils::stopwatch sw{};
 	mc::dummy_payoff payoff{};
+	sw.start();
 	auto result = mc_engine.calculate(payoff);
-    
+	sw.stop();
 	auto value = result.get_estimate();
+	auto time = sw.elapsed_millisec();
 	BOOST_TEST_MESSAGE("value = " + std::to_string(value));
+	BOOST_TEST_MESSAGE("time = " + std::to_string(time));
 	BOOST_CHECK_EQUAL(0.0, 0.0);
 }
 
