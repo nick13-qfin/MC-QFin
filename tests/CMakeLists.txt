@@ -15,6 +15,7 @@ add_definitions(-DBOOST_UNITTEST)
 
 #set(Boost_NO_SYSTEM_PATHS ON)
 set(Boost_DEBUG ON)
+set(BOOST_TEST_LOG_LEVEL message)
 if(UNIX)
 #     set(EIGEN3_INCLUDE_DIR "~/Coding/eigen/eigen_build")
 #     include_directories(${EIGEN3_INCLUDE_DIR})
