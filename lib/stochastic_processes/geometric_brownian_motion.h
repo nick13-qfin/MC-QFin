@@ -12,16 +12,12 @@ namespace mc
 		std::unique_ptr<mu_t> mu_;
 		std::unique_ptr<vol_t> vol_;
 		double x0_;
-		//size_t this_index_;
 		using base = stoch_process<geometric_brownian_motion<mu_t, vol_t>>;
 	public:
 		geometric_brownian_motion(std::unique_ptr<mu_t>&& mu, std::unique_ptr<vol_t>&& vol, double x0)
 			:
 			mu_(std::move(mu)), vol_(std::move(vol)) , x0_(x0)
-		{
-			//this_index_ = base::get_counter();
-			//base::update_count();
-		};
+		{ };
         
         geometric_brownian_motion(double mu, double vol, double x0)
         : geometric_brownian_motion(
@@ -51,12 +47,6 @@ namespace mc
 		{
 			return x0_;
 		}
-
-		//size_t get_index() const
-		//{
-		//	// needed by the scheme
-		//	return this_index_;
-		//}
 
 		size_t get_n_diffusions() const
 		{
