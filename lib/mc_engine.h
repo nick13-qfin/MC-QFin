@@ -35,6 +35,9 @@ namespace mc
                 tmp[i++] = args->get_n_times()), ...); }, schemes_);
             n_steps_ = tmp[0];
             //check timeline in schemes is the same?
+            i = 0;
+            std::apply([&](auto&... args) {((
+                args->set_process_index(i++)), ...); }, schemes_);
         }
             
         template<class payoff_t>
