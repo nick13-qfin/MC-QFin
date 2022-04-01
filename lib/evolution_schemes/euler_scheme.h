@@ -23,13 +23,14 @@ namespace mc
         void evolve(mc_path& out_path, const vector_t& wieners) const
         {
             out_path.set_path_value(process_->get_x0(), nth_row_, 0);
+
             for (size_t i = 1; i < n_times_; i++)
             {
                 const auto sqrt_dt = time_.get_sqrtdt(i - 1);
                 const auto dt = time_.get_dt(i - 1);
-                const auto x_old = out_path.get_state(i - 1);
-                double xt = x_old[nth_row_] + process_->drift(x_old) * dt
-                    + process_->diffusion(x_old) * sqrt_dt * wieners[i - 1];
+                double xt = out_path.get_state(i - 1)[nth_row_]
+                    + process_->drift(out_path.get_state(i - 1)) * dt
+                    + process_->diffusion(out_path.get_state(i - 1)) * sqrt_dt * wieners[i - 1];
                 out_path.set_path_value(xt, nth_row_, i);
             }
         }
