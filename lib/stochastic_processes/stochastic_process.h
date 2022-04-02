@@ -39,6 +39,7 @@ namespace mc
 		void set_index(size_t i)
 		{
 			index_ = i;
+//             true_this().set_parameters_index();
 		}
 
 		size_t get_n_diffusions() const

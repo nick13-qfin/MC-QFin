@@ -52,6 +52,18 @@ namespace mc
 		{
 			return 1;
 		}
+		
+		void set_parameters_index(size_t i)
+		{
+            if constexpr (is_state_dep_par<mu_t>::value)
+            {
+                //
+            }
+            if constexpr (is_state_dep_par<vol_t>::value)
+            {
+                //
+            }
+		}
 
 	};
 }
