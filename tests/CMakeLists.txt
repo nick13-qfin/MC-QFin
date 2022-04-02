@@ -40,7 +40,7 @@ include_directories(${Boost_INCLUDE_DIRS})
 message(STATUS "boost Library ${Boost_LIBRARIES}")
 message(STATUS "boost unit test  ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}")
 
-message(STATUS "current dir ====== ${CMAKE_CURRENT_SOURCE_DIR} ")
+message(STATUS "CMAKE_CURRENT_SOURCE_DIR ====== ${CMAKE_CURRENT_SOURCE_DIR} ")
 
 file(GLOB TEST_SRCS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.cpp)
 #Run through each source
@@ -55,7 +55,7 @@ foreach(testSrc ${TEST_SRCS})
     #Add compile target
     add_executable(${shname} ${testSrc})
     #link to Boost libraries AND your targets and dependencies
-    target_link_libraries(${shname} ${Boost_LIBRARIES})
+    target_link_libraries(${shname} ${Boost_LIBRARIES} rng)
     add_test(NAME ${shname} COMMAND ${shname})
 
     #add_test(NAME ${testName} COMMAND ${testName})
