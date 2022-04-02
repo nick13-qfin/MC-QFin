@@ -7,9 +7,6 @@
 #include <../random_numbers/include/norm_rng.h>
 #include <../random_numbers/include/unif_rng.h>
 #include <../random_numbers/include/acklam_norm_inversion.h>
-//#include "random_numbers/norm_rng.h"
-//#include "random_numbers/unif_rng.h"
-//#include "utils/acklam_norm_inversion.h"
 #include <tuple>
 #include <memory>
 
