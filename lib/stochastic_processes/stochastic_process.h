@@ -15,6 +15,11 @@ namespace mc
 			return static_cast<const derived_proc&>(*this);
 		}
 
+		derived_proc& true_this()
+		{
+			return static_cast<derived_proc&>(*this);
+		}
+
 		double get_x0() const
 		{
 			return true_this().get_x0();
@@ -39,7 +44,7 @@ namespace mc
 		void set_index(size_t i)
 		{
 			index_ = i;
-//             true_this().set_parameters_index();
+            true_this().set_parameters_index(i);
 		}
 
 		size_t get_n_diffusions() const
