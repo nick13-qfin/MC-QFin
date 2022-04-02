@@ -1,7 +1,13 @@
 # MC-QFin
 Place holder for MC-related experiments with C++.
 
-The project uses CMake to build both on Linux and on Windows.
+The project is made of 2 libraries:
+- [lib](/lib) is (for now) a headers-only lib that defines a MC engine and all the needed components (evol schemes, SDEs, parameters)
+- [random_numbers](/random_number) is a static library used to generate random numbers
+
+and a [test](/tests) suite.
+
+CMake is used to build both on Linux and on Windows.
 Currently it is tested on: 
 - Win: VS2022 community edition 
 - Linux: Kdevelop
@@ -119,8 +125,6 @@ Useful resources:
 - GCC current lib book of work -> [here](https://gcc.gnu.org/onlinedocs/libstdc++/manual/status.html#status.iso.2020);
 - a date headers-only library that might be used as a replacement in the meantime -> [here](https://github.com/HowardHinnant/date).
 
-### .cpp/.h
-Currently the lib is made of headers only. It would make sense though, to move into source (cpp) files some classes definitions, e.g [mc_path](/lib/mc_representation/mc_path.h).
 
 ### Exposing it to Python
 - [pybind](https://pybind11.readthedocs.io/en/latest/)
