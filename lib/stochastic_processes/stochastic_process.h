@@ -7,7 +7,7 @@ namespace mc
 	class stoch_process
 	{
 	protected:
-		size_t index_;
+		size_t index_ = 0;
 
 	public:
 		const derived_proc& true_this() const

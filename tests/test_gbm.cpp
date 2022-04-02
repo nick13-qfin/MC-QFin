@@ -30,7 +30,7 @@ BOOST_AUTO_TEST_CASE(gbmtest2)
     
     gbm_t gbm(0.1, 0.2, 0.0);
     gbm_t gbm_2nd(0.1, 0.2, 0.0); // this will break with a single state
-    
+    gbm_2nd.set_index(1);
     auto v = std::vector<double>{2.0, 1.0};
     mc::markovian_state state(0.0, v);
     const auto drift_term = gbm_2nd.drift(state);
@@ -39,7 +39,6 @@ BOOST_AUTO_TEST_CASE(gbmtest2)
     BOOST_CHECK_EQUAL(drift_term, 0.1);
 	BOOST_CHECK_EQUAL(vol_term, 0.2);
     
-//     BOOST_CHECK_THROW (const auto drift_term = gbm_2nd.drift(state), std::out_of_range);
 
 }
 
