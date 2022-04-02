@@ -1,16 +1,20 @@
 #define BOOST_TEST_MODULE normrng test
 
 #include <boost/test/unit_test.hpp>
-#include "../lib/random_numbers/norm_rng.h"
+//#include "../lib/random_numbers/norm_rng.h"
+//#include <acklam_norm_inversion.h>
+//#include ""
+#include <../random_numbers/include/norm_rng.h>
 
 BOOST_AUTO_TEST_SUITE(normrng)
 
 BOOST_AUTO_TEST_CASE(test1)
 {
-    mc::normal_rng rand{ 1 };
+    rng::normal_rng rand{ 1 };
     auto a = rand.next();
     auto b = rand.next();
     BOOST_CHECK_EQUAL(0.0, 0.0);
+
 }
 
 
