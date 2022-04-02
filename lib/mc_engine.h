@@ -4,15 +4,18 @@
 #include "mc_representation/mc_path.h"
 #include "mc_representation/payoff.h"
 #include "mc_representation/output_report.h"
-#include "random_numbers/norm_rng.h"
-#include "random_numbers/unif_rng.h"
-#include "utils/acklam_norm_inversion.h"
+#include <../random_numbers/include/norm_rng.h>
+#include <../random_numbers/include/unif_rng.h>
+#include <../random_numbers/include/acklam_norm_inversion.h>
+//#include "random_numbers/norm_rng.h"
+//#include "random_numbers/unif_rng.h"
+//#include "utils/acklam_norm_inversion.h"
 #include <tuple>
 #include <memory>
 
 namespace mc
 {
-    using normal_rng2 = normal_inv_rng < mersenne_twister, utils::acklam_inversion>;
+    using normal_rng2 = rng::normal_inv_rng < rng::mersenne_twister, rng::acklam_inversion>;
 
 	template<ev_scheme_type... E>
 	class mc_engine
