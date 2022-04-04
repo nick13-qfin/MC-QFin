@@ -5,14 +5,14 @@
 #include "../lib/stochastic_processes/geometric_brownian_motion.h"
 #include "../lib/evolution_schemes/euler_scheme.h"
 #include "../lib/parameters/parameters_utils.h"
-#include "../lib/interpolation/pwc_interpolator.h"
+#include <../interpolation/include/pwc_interpolator.h>
 #include <tuple>
 #include "../lib/utils/stopwatch.h"
 
 
 BOOST_AUTO_TEST_SUITE(mcengine)
 using gbm_t = mc::geometric_brownian_motion<mc::constant_param, mc::constant_param>;
-using param_t = mc::time_dep_param<utils::pwc_interp<utils::unchecked_boundaries>>;
+using param_t = mc::time_dep_param<interp::pwc_interp<interp::unchecked_boundaries>>;
 using gbm2_t = mc::geometric_brownian_motion<param_t, mc::constant_param>;
 
 BOOST_AUTO_TEST_CASE(constr_singlescheme)

@@ -3,7 +3,7 @@
 #include <vector>
 #include "extrapolation_policies.h"
 
-namespace utils
+namespace interp
 {
 	size_t index_first_elem_above(const std::vector<double>& x, double x0)
 	{

@@ -4,7 +4,7 @@
 
 #include <boost/test/unit_test.hpp>
 #include "../lib/parameters/parameters_utils.h"
-#include "../lib/interpolation/pwc_interpolator.h"
+#include <../interpolation/include/pwc_interpolator.h>
 
 
 BOOST_AUTO_TEST_SUITE(parameters)
@@ -12,7 +12,7 @@ BOOST_AUTO_TEST_CASE(timedepparm)
 {
     std::vector<double> x{ 0.0, 1.0, 2.0 };
     std::vector<double> f{ -1.0, -3.0, 5.0 };
-    const auto par = mc::time_dep_param<utils::pwc_interp<utils::unchecked_boundaries>>(std::move(x), std::move(f));
+    const auto par = mc::time_dep_param<interp::pwc_interp<interp::unchecked_boundaries>>(std::move(x), std::move(f));
 
     const mc::markovian_state state(0.5, std::vector<double>(1));
       BOOST_CHECK_EQUAL(par.value(state), -1.0);
@@ -24,9 +24,9 @@ BOOST_AUTO_TEST_CASE(movepointer)
     std::vector<double> x{ 0.0, 1.0, 2.0 };
     std::vector<double> f{ -1.0, -3.0, 5.0 };
 
-    auto interp = std::make_unique<utils::pwc_interp<utils::unchecked_boundaries>>(std::move(x), std::move(f));
+    auto interp = std::make_unique<interp::pwc_interp<interp::unchecked_boundaries>>(std::move(x), std::move(f));
 
-    mc::time_dep_param<utils::pwc_interp<utils::unchecked_boundaries>> par(std::move(interp));
+    mc::time_dep_param<interp::pwc_interp<interp::unchecked_boundaries>> par(std::move(interp));
 
     BOOST_CHECK_EQUAL(interp, nullptr);
     BOOST_CHECK_EQUAL(x.size(), 0);

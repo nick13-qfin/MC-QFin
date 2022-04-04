@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../mc_representation/state.h"
-#include "../interpolation/interpolator_base.h"
+#include <../interpolation/include/interpolator_base.h>
 #include <memory>
 
 namespace mc

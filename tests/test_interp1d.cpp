@@ -3,13 +3,15 @@
 
 
 #include <boost/test/unit_test.hpp>
-#include "../lib/interpolation/interpolator_base.h"
-#include "../lib/interpolation/pwc_interpolator.h"
+#include <../interpolation/include/interpolator_base.h>
+#include <../interpolation/include/pwc_interpolator.h>
+//#include "../lib/interpolation/interpolator_base.h"
+//#include "../lib/interpolation/pwc_interpolator.h"
 
 
 BOOST_AUTO_TEST_SUITE(interp)
 template<template<class> class derived_interp, class extrapolation>
-double test_get_value(const utils::base_interp1d<derived_interp, extrapolation>& interp, double t)
+double test_get_value(const interp::base_interp1d<derived_interp, extrapolation>& interp, double t)
 {
     return interp.interpolate(t);
 };
@@ -19,7 +21,7 @@ BOOST_AUTO_TEST_CASE(crtp)
     std::vector<double> x{ 0.0, 1.0, 2.0 };
     std::vector<double> f{ -1.0, -3.0, 5.0 };
 
-    const auto interp = utils::pwc_interp<utils::unchecked_boundaries>(x, f);
+    const auto interp = interp::pwc_interp<interp::unchecked_boundaries>(x, f);
     const double val = test_get_value(interp, 2.0);
     BOOST_CHECK_EQUAL(val, -3.0);
 }
@@ -28,7 +30,7 @@ BOOST_AUTO_TEST_CASE(compiletimecheck)
 {
 
 //     utils::pwc_interp<utils::unchecked_boundaries>
-    auto test2 = utils::is_interp<utils::pwc_interp<utils::unchecked_boundaries>>::value;
+    auto test2 = interp::is_interp<interp::pwc_interp<interp::unchecked_boundaries>>::value;
     BOOST_CHECK_EQUAL(test2, true);
     
 }
@@ -38,7 +40,7 @@ BOOST_AUTO_TEST_CASE(movevectors)
     std::vector<double> x{ 0.0, 1.0, 2.0 };
     std::vector<double> f{ -1.0, -3.0, 5.0 };
 
-    const auto interp = utils::pwc_interp<utils::unchecked_boundaries>(std::move(x), std::move(f));
+    const auto interp = interp::pwc_interp<interp::unchecked_boundaries>(std::move(x), std::move(f));
     BOOST_CHECK_EQUAL(x.size(), 0);
     BOOST_CHECK_EQUAL(f.size(), 0);
 
@@ -51,7 +53,7 @@ BOOST_AUTO_TEST_CASE(pwc1)
     std::vector<double> x{ 0.0, 1.0, 2.0 };
     std::vector<double> f{ -1.0, -3.0, 5.0 };
 
-    const auto interp = utils::pwc_interp<utils::unchecked_boundaries>(x, f);
+    const auto interp = interp::pwc_interp<interp::unchecked_boundaries>(x, f);
     BOOST_CHECK_EQUAL(x.size(), 3);
     BOOST_CHECK_EQUAL(f.size(), 3);
 

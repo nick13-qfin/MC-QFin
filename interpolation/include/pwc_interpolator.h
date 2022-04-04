@@ -1,6 +1,6 @@
 #pragma once
-
-namespace utils
+#include "interpolator_base.h"
+namespace interp
 {
 
 	template<extrapolation_type E>

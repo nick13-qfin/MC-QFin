@@ -1,10 +1,8 @@
 #define BOOST_TEST_MODULE normrng test
 
 #include <boost/test/unit_test.hpp>
-//#include "../lib/random_numbers/norm_rng.h"
-//#include <acklam_norm_inversion.h>
-//#include ""
 #include <../random_numbers/include/norm_rng.h>
+
 
 BOOST_AUTO_TEST_SUITE(normrng)
 

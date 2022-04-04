@@ -26,7 +26,11 @@ include_directories(${EIGEN_DIR})
 enable_testing()
 
 # Include sub-projects.
+#add_subdirectory (interpolation)
 add_subdirectory (tests)
 add_subdirectory (random_numbers)
+add_subdirectory (interpolation)
+
+
 
 

@@ -4,7 +4,7 @@
 
 namespace mc
 {
-    template<utils::interp_type I>
+    template<interp::interp_type I>
     class time_dep_param : public base_param<time_dep_param<I>>
     {
         std::unique_ptr<I> par_;
