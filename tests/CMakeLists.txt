@@ -41,6 +41,14 @@ message(STATUS "boost Library ${Boost_LIBRARIES}")
 message(STATUS "boost unit test  ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}")
 
 message(STATUS "CMAKE_CURRENT_SOURCE_DIR ====== ${CMAKE_CURRENT_SOURCE_DIR} ")
+set(DCMAKE_FIND_DEBUG_MODE true)
+#find_library(rng NAMES rng.lib)
+#message(STATUS "rng lib dir ====== ${Rng_LIBRARYDIR} ")
+#message(STATUS "rng include dir ====== ${Rng_INCLUDEDIR} ")
+#message(STATUS "rng include dir ====== ${Rng_INCLUDE_DIRS} ")
+
+
+
 
 file(GLOB TEST_SRCS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.cpp)
 #Run through each source
