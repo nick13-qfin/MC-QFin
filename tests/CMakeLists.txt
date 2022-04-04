@@ -42,8 +42,8 @@ message(STATUS "boost unit test  ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}")
 
 message(STATUS "CMAKE_CURRENT_SOURCE_DIR ====== ${CMAKE_CURRENT_SOURCE_DIR} ")
 set(DCMAKE_FIND_DEBUG_MODE true)
-#find_library(rng NAMES rng.lib)
-#message(STATUS "rng lib dir ====== ${Rng_LIBRARYDIR} ")
+#find_library(RNG rng PATH_SUFFIXES rng)
+#message(STATUS "rng lib dir ====== ${RNG} ")
 #message(STATUS "rng include dir ====== ${Rng_INCLUDEDIR} ")
 #message(STATUS "rng include dir ====== ${Rng_INCLUDE_DIRS} ")
 
@@ -63,7 +63,7 @@ foreach(testSrc ${TEST_SRCS})
     #Add compile target
     add_executable(${shname} ${testSrc})
     #link to Boost libraries AND your targets and dependencies
-    target_link_libraries(${shname} ${Boost_LIBRARIES} rng)
+    target_link_libraries(${shname} ${Boost_LIBRARIES} rng interp)
     add_test(NAME ${shname} COMMAND ${shname})
 
     #add_test(NAME ${testName} COMMAND ${testName})
