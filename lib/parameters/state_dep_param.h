@@ -22,13 +22,6 @@ namespace mc
             return interp_->interpolate(t, x);
         }
         
-        //TODO: what signature to use in general case?
-        // how can the state know where 'x' is?
-//         double value(double t, double x) const
-//         {
-//             return interp_->interpolate(t, x);
-//         }
-        
         void set_index(size_t i)
         {
             index_ = i;
