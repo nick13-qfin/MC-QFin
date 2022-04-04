@@ -14,6 +14,9 @@ Currently it is tested on:
 
 ## Table of contents
 - [Prerequisites](#prerequisites)
+  - [Boost](#boost)
+  - [Eigen](#eigen)
+  - [CXX20 compiler](#cxx20-compiler)
 - [Open points](#open-points)
 
 References:
