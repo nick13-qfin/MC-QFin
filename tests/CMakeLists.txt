@@ -63,7 +63,7 @@ foreach(testSrc ${TEST_SRCS})
     #Add compile target
     add_executable(${shname} ${testSrc})
     #link to Boost libraries AND your targets and dependencies
-    target_link_libraries(${shname} ${Boost_LIBRARIES} rng interp)
+    target_link_libraries(${shname} ${Boost_LIBRARIES} rng)
     add_test(NAME ${shname} COMMAND ${shname})
 
     #add_test(NAME ${testName} COMMAND ${testName})
