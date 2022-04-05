@@ -5,16 +5,7 @@
 
 namespace interp
 {
-	size_t index_first_elem_above(const std::vector<double>& x, double x0)
-	{
-		const size_t n = x.size();
-		for (size_t i = n - 2; i >= 0; --i)
-		{
-			if (x[i] <= x0)
-				return i;
-		}
-		return n - 2;
-	}
+
 
 
 	template<template<class> class derived_interp, extrapolation_type E>
@@ -28,6 +19,18 @@ namespace interp
 		derived_interp<E>& true_this() 
 		{
 			return static_cast<derived_interp<E>&>(*this);
+		}
+
+	protected:
+		size_t index_first_elem_above(const std::vector<double>& x, double x0) const
+		{
+			const size_t n = x.size();
+			for (size_t i = n - 2; i >= 0; --i)
+			{
+				if (x[i] <= x0)
+					return i;
+			}
+			return n - 2;
 		}
 
 	public:
