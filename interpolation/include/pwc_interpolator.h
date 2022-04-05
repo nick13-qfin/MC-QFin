@@ -6,7 +6,7 @@ namespace interp
 	template<extrapolation_type E>
 	class pwc_interp : public base_interp1d<pwc_interp, E>
 	{
-
+		using base = base_interp1d<pwc_interp, E>;
 		std::vector<double> x_;
 		std::vector<double> f_;
 
@@ -20,7 +20,7 @@ namespace interp
 
 		double interpolate(double p) const
 		{
-			const auto i0 = index_first_elem_above(x_, p);
+			const auto i0 = base::index_first_elem_above(x_, p);
 			return f_[i0];
 		}
 
