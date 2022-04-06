@@ -1,7 +1,7 @@
 #define BOOST_TEST_MODULE stochparam test
 
 #include <boost/test/unit_test.hpp>
-#include "../lib/parameters/stoch_param.h"
+#include "../montecarlo/parameters/stoch_param.h"
 
 BOOST_AUTO_TEST_SUITE(stochparam)
 

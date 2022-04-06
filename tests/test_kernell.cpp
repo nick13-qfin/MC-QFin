@@ -1,7 +1,7 @@
 #define BOOST_TEST_MODULE kernell test
 
 #include <boost/test/unit_test.hpp>
-#include "../lib/utils/kernells.h"
+#include "../montecarlo/utils/kernells.h"
 
 
 BOOST_AUTO_TEST_SUITE(kernells)

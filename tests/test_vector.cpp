@@ -2,7 +2,7 @@
 
 #include <boost/test/unit_test.hpp>
 #include <vector>
-#include "../lib/utils/vectors_utils.h"
+#include "../montecarlo/utils/vectors_utils.h"
 
 
 BOOST_AUTO_TEST_SUITE(vector)

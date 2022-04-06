@@ -2,8 +2,8 @@
 #define BOOST_TEST_MODULE evol test
 
 #include <boost/test/unit_test.hpp>
-#include "../lib/evolution_schemes/euler_scheme.h"
-#include "../lib/stochastic_processes/geometric_brownian_motion.h"
+#include "../montecarlo/evolution_schemes/euler_scheme.h"
+#include "../montecarlo/stochastic_processes/geometric_brownian_motion.h"
 #include <stdexcept>
 
 

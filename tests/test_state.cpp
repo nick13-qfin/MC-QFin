@@ -1,7 +1,7 @@
 #define BOOST_TEST_MODULE state test
 
 #include <boost/test/unit_test.hpp>
-#include "../lib/mc_representation/state.h"
+#include "../montecarlo/mc_representation/state.h"
 #include <stdexcept>
 
 

@@ -2,7 +2,7 @@
 #define BOOST_TEST_MODULE gbm test
 
 #include <boost/test/unit_test.hpp>
-#include "../lib/stochastic_processes/geometric_brownian_motion.h"
+#include "../montecarlo/stochastic_processes/geometric_brownian_motion.h"
 #include <stdexcept>
 
 

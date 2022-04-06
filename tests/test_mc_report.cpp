@@ -3,7 +3,7 @@
 
 
 #include <boost/test/unit_test.hpp>
-#include "../lib/mc_representation/output_report.h"
+#include "../montecarlo/mc_representation/output_report.h"
 
 BOOST_AUTO_TEST_SUITE(mc_report)
 

@@ -1,13 +1,13 @@
 #define BOOST_TEST_MODULE mcengine test
 
 #include <boost/test/unit_test.hpp>
-#include "../lib/mc_engine.h"
-#include "../lib/stochastic_processes/geometric_brownian_motion.h"
-#include "../lib/evolution_schemes/euler_scheme.h"
-#include "../lib/parameters/parameters_utils.h"
+#include "../montecarlo/mc_engine.h"
+#include "../montecarlo/stochastic_processes/geometric_brownian_motion.h"
+#include "../montecarlo/evolution_schemes/euler_scheme.h"
+#include "../montecarlo/parameters/parameters_utils.h"
 #include <../interpolation/include/pwc_interpolator.h>
 #include <tuple>
-#include "../lib/utils/stopwatch.h"
+#include "../montecarlo/utils/stopwatch.h"
 
 
 BOOST_AUTO_TEST_SUITE(mcengine)
