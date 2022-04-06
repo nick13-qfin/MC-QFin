@@ -12,6 +12,7 @@
 
 namespace mc
 {
+    //TODO: tmply here
     using normal_rng2 = rng::normal_inv_rng < rng::mersenne_twister, rng::acklam_inversion>;
 
 	template<ev_scheme_type... E>
