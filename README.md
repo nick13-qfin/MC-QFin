@@ -1,11 +1,13 @@
 # MC-QFin
 Place holder for MC-related experiments with C++.
 
-The project is made of 2 libraries:
-- [lib](/lib) is (for now) a headers-only lib that defines a MC engine and all the needed components (evol schemes, SDEs, parameters)
+The project is made of 3 libraries:
+- [montecarlo](/montecarlo) is a headers-only lib that defines a MC engine and all the needed components (evol schemes, SDEs, parameters)
 - [random_numbers](/random_number) is a static library used to generate random numbers
+- [interpolation](/interpolation) is a static library used for interpolations
 
-and a [test](/tests) suite.
+and 
+- a [test](/tests) suite.
 
 CMake is used to build both on Linux and on Windows.
 Currently it is tested on: 
@@ -18,16 +20,19 @@ Currently it is tested on:
   - [Eigen](#eigen)
   - [CXX20 compiler](#cxx20-compiler)
 - [Open points](#open-points)
+  - [Dates](#dates-handling)
+  - [Python?](#exposing-it-to-python)
 
 References:
 - LaTeX in this Readme: [https://latex.codecogs.com/](https://latex.codecogs.com/) (set svg and HTML)
 
 ## Prerequisites
-In order to compile the project, you must install the following libraries
--  [Boost](#boost)
--  [Eigen](#eigen)
+The components needed to be installed in order to compile the project:
+-  [Boost](#boost) for unit testing;
+-  [Eigen](#eigen) for linear algebra as well as 2d containers;
+-  [C++20](#cxx20-compiler) for using C++20 features.
 
-as well as having [support](#cxx20-compiler) for C++20 features.
+
 ### Boost
 At this stage, Boost is only used to run unit testing.
 
