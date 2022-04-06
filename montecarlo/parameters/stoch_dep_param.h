@@ -8,21 +8,24 @@ namespace mc
 	concept transf_policy = requires(T op, double x) { op(x); };
 	// is-a param? yes
 	// is-a process? yes I think -> it needs to hold an additional mapping for the param
-	template<stochprocess_type S, class F>
+	template<stochprocess_type S, transf_policy F>
 	class stoch_parameter : public base_param<stoch_parameter<S, F>>, public stoch_process<stoch_parameter<S,F>>
 	{
 		std::unique_ptr<S> process_;
 		F f_;
 
 	public:
+		//even if proc is a S&, it is then moved into the unique_ptr
+		// that is because S(S& s) is implicitely deleted by the compiler
+		// it makes sense to have it so, as the base::index_ would be ambiguous then
 		stoch_parameter(S& proc)
-			: process_(std::make_unique<S>(proc)), f_() {}
+			: process_(std::make_unique<S>(std::move(proc))), f_() {} 
 
 		stoch_parameter(std::unique_ptr<S>&& proc)
 			: process_(std::move(proc)), f_() {}
 
 		stoch_parameter(S& proc, F& f)
-			: process_(std::make_unique<S>(proc)), f_(f) {}
+			: process_(std::make_unique<S>(std::move(proc))), f_(f) {}
 
 		stoch_parameter(std::unique_ptr<S>&& proc, F& f)
 			: process_(std::move(proc)), f_(f) {}
@@ -61,14 +64,13 @@ namespace mc
 		}
 	};
 
-	//TODO: it doesn't work - why?
-	template<stochprocess_type S, class F>
+	template<stochprocess_type S, transf_policy	 F>
 	std::unique_ptr<stoch_parameter<S, F>> make_stoch_param(S& process, F& f)
 	{
 		return std::make_unique<stoch_parameter<S, F>>(process, f);
 	};
 
-	template<stochprocess_type S, class F>
+	template<stochprocess_type S, transf_policy F>
 	std::unique_ptr<stoch_parameter<S, F>> make_stoch_param(std::unique_ptr<S>&& process, F& f)
 	{
 		return std::make_unique<stoch_parameter<S, F>>(std::move(process), f);
