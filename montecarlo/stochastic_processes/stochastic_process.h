@@ -6,10 +6,6 @@ namespace mc
 	template<class derived_proc>
 	class stoch_process
 	{
-	protected:
-		size_t index_ = 0;
-
-	public:
 		const derived_proc& true_this() const
 		{
 			return static_cast<const derived_proc&>(*this);
@@ -20,6 +16,16 @@ namespace mc
 			return static_cast<derived_proc&>(*this);
 		}
 
+	protected:
+		size_t index_ = 0;
+
+	public:
+		// this is needed by the scheme
+		size_t get_index() const
+		{
+			return index_;
+		}
+	
 		double get_x0() const
 		{
 			return true_this().get_x0();
@@ -35,16 +41,11 @@ namespace mc
 			return true_this().diffusion(state);
 		}
 
-		// this is needed by the scheme
-		size_t get_index() const
-		{
-			return index_;
-		}
 
 		void set_index(size_t i)
 		{
 			index_ = i;
-            true_this().set_parameters_index(i);
+            true_this().set_parameters_index(i); // oly for pure state-dep params
 		}
 
 		size_t get_n_diffusions() const
