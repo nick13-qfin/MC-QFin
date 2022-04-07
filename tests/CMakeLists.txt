@@ -3,8 +3,6 @@
 #
 cmake_minimum_required (VERSION 3.8)
 
-#project(Test1 VERSION 0.1)
-# Settings the Boost Library 
 set(Boost_USE_STATIC_LIBS ON) 
 add_definitions(-DBOOST_UNITTEST)
 
