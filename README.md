@@ -7,7 +7,10 @@ The project is made of 3 libraries:
 - [interpolation](/interpolation) is a static library used for interpolations
 
 and 
-- a [test](/tests) suite.
+- a [test](/tests) suite
+- a [python interface](/python_interface). 
+ 
+[pybind](https://pybind11.readthedocs.io/en/latest/) is used to expose functions to Python.
 
 CMake is used to build both on Linux and on Windows.
 Currently it is tested on: 
@@ -21,7 +24,6 @@ Currently it is tested on:
   - [CXX20 compiler](#cxx20-compiler)
 - [Open points](#open-points)
   - [Dates](#dates-handling)
-  - [Python?](#exposing-it-to-python)
 
 References:
 - LaTeX in this Readme: [https://latex.codecogs.com/](https://latex.codecogs.com/) (set svg and HTML)
@@ -134,5 +136,3 @@ Useful resources:
 - a date headers-only library that might be used as a replacement in the meantime -> [here](https://github.com/HowardHinnant/date).
 
 
-### Exposing it to Python
-- [pybind](https://pybind11.readthedocs.io/en/latest/)
