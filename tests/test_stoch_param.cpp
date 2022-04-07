@@ -12,7 +12,6 @@ BOOST_AUTO_TEST_CASE(makefromptr)
     auto gbm = std::make_unique<gbm_t>( 0.01, 0.2, 1 );
     mc::dummy_lambda l{};
     auto sqrdgbm = mc::make_stoch_param(std::move(gbm), l);
-    //auto sqrdgbm = mc::make_stoch_param(gbm, [](double x) {return x * x; });
 
 
     BOOST_CHECK_EQUAL(0.0, 0.0);
@@ -22,11 +21,8 @@ BOOST_AUTO_TEST_CASE(makefromptr)
 BOOST_AUTO_TEST_CASE(makefromobj)
 {
     gbm_t gbm{ 0.01, 0.2, 1 };//
-    //gbm_t gbm2{ std::move(gbm)};
-    //auto gbp_p = std::make_unique<gbm_t>(std::move(gbm));
     mc::dummy_lambda l{};
     auto sqrdgbm = mc::make_stoch_param(gbm, l);
-    //auto sqrdgbm = mc::make_stoch_param(gbm, [](double x) {return x * x; });
 
 
     BOOST_CHECK_EQUAL(0.0, 0.0);
