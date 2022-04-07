@@ -30,6 +30,7 @@ enable_testing()
 add_subdirectory (tests)
 add_subdirectory (random_numbers)
 add_subdirectory (interpolation)
+add_subdirectory (python_interface)
 
 
 
