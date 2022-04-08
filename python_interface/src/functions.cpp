@@ -25,8 +25,9 @@ std::vector<double> black_scholes_mc(double S, double K, double T, double r, dou
     auto mcresult = mc_engine.calculate(payoff);
     sw.stop();
     auto value = mcresult.get_estimate();
+    auto mcerr = mcresult.mc_err();
     auto time = sw.elapsed_millisec();
-    std::vector<double> result{ value, time };
+    std::vector<double> result{ value, mcerr, time };
     return result;
 }
 
