@@ -2,7 +2,7 @@
 #include <pybind11/stl.h>
 #include <../../random_numbers/include/norm_rng.h>
 #include <../../random_numbers/include/unif_rng.h>
-#include<../../montecarlo/mc_engine.h>
+#include<../../montecarlo/mc_engine_mt.h>
 #include<../../montecarlo/stochastic_processes/geometric_brownian_motion.h>
 #include<../../montecarlo/evolution_schemes/euler_scheme.h>
 #include<../../montecarlo/utils/stopwatch.h>
@@ -12,20 +12,20 @@
 #define MACRO_STRINGIFY(x) STRINGIFY(x)
 
 std::vector<double> black_scholes_mc(double S, double K, double T, double r, double sigma,
-    unsigned int seed, double dt, size_t n_mc)
+    unsigned int seed, double dt, size_t n_mc, size_t nthreads)
 {
     using gbm_t = mc::geometric_brownian_motion<mc::constant_param, mc::constant_param>;
     auto gbm = std::make_unique<gbm_t>(r, sigma, S);
     auto scheme = std::make_unique<mc::euler_scheme<gbm_t>>(0, T, dt, std::move(gbm));
 
-    auto mc_engine = mc::make_mcengine(n_mc, std::move(scheme));
+    auto mc_engine = mc::make_mcengine_mt(n_mc, seed, nthreads, std::move(scheme));
     utils::stopwatch sw{};
     mc::dummy_payoff payoff{};
     sw.start();
-    auto mcresult = mc_engine.calculate(payoff);
+    mc_engine.calculate(payoff);
     sw.stop();
-    auto value = mcresult.get_estimate();
-    auto mcerr = mcresult.mc_err();
+    auto value = mc_engine.get_result();
+    auto mcerr = mc_engine.mc_err();
     auto time = sw.elapsed_millisec();
     std::vector<double> result{ value, mcerr, time };
     return result;
