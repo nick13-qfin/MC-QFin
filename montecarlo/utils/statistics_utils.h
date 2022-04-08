@@ -9,7 +9,7 @@ namespace utils
     {
         double res = 0.0;
         for(const auto v: vec)
-            res += vec;
+            res += v;
         
         return res/n;
     }
@@ -42,12 +42,13 @@ namespace utils
     }
     
     template<class vector_t>
-    pearson_correlation(const vector_t& X, const vector_t& Y, double mu_x, double mu_y, double std_x, double std_y, size_t n)
+    double pearson_correlation(const vector_t& X, const vector_t& Y, 
+        double mu_x, double mu_y, double std_x, double std_y, size_t n)
     {
         double res = 0.0;
         for (size_t i = 0; i < n; ++i)
             res += (X[i] - mu_x) * (Y[i] - mu_y);
-        return res / std_x / std_ / (n -1);
+        return res / std_x / std_y / (n -1);
     }
     
     template<class vector_t>
@@ -57,9 +58,9 @@ namespace utils
     {
         const size_t n = X.size(); // ASSUMPTION they have same size
         out_mu_x = average(X);
-        out_std_x = sqrt(variance(X, mu_x, n));
+        out_std_x = sqrt(variance(X, out_mu_x, n));
         out_mu_y = average(Y);
-        out_std_y = sqrt(variance(Y, mu_y, n));
+        out_std_y = sqrt(variance(Y, out_mu_y, n));
         out_corr = pearson_correlation(X, Y, out_mu_x, out_mu_y, out_std_x, out_std_y, n);
     }
 }
