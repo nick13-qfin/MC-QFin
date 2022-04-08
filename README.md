@@ -22,6 +22,7 @@ Currently it is tested on:
   - [Boost](#boost)
   - [Eigen](#eigen)
   - [CXX20 compiler](#cxx20-compiler)
+- [Using Python](#using-python)
 - [Open points](#open-points)
   - [Dates](#dates-handling)
 
@@ -125,6 +126,36 @@ project ("MC-QFin")
 ```
 
 Note: you might have to delete `CMakeCache.txt` for `CMAKE_CXX_COMPILER` to be correctly updated.
+
+
+## Using Python
+### Windows 10
+On Windows, I am using VScode to create notebooks.
+In order to do that, you need to:
+- install Python see [here](https://docs.python.org/3/installing/index.html)
+- select a python interpreter (ctrl-shift-p).
+
+For additional packages, I recommend going to cmd and doing the following:
+```
+python -m pip install <package-name>
+```
+#### Note
+`cmd` will give you a warning
+```
+  WARNING: The scripts fonttools.exe, pyftmerge.exe, pyftsubset.exe and ttx.exe are installed in 'C:\Users\nicol\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\Scripts' which is not on PATH.
+```
+This is due to Windows sandboxing python. 
+One solution to this is to check the current python path in python:
+```python
+import sys
+print(sys.path)
+```
+and then copying the installed binaries in the folders already in python path.
+
+### Linux (Ubuntu 20.4)
+Ubuntu comes with Python already installed
+
+
 
 ## Open points
 ### Dates handling
