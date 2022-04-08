@@ -39,5 +39,10 @@ namespace mc
             return var / sqrt(n);
         }
 
+        void reset()
+        {
+            results_.clear();
+        }
+
     };
 }
