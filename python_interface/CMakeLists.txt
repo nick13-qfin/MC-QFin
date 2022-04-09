@@ -5,7 +5,9 @@ add_subdirectory(extern/pybind11)
 include_directories("${CMAKE_SOURCE_DIR}/random_numbers/include")
 include_directories("${CMAKE_SOURCE_DIR}/montecarlo")
 
-pybind11_add_module(qfin src/functions.cpp)
+pybind11_add_module(qfin 
+    src/qfinpylib.cpp 
+    src/functions.cpp)
 
 # EXAMPLE_VERSION_INFO is defined by setup.py and passed into the C++ code as a
 # define (VERSION_INFO) here.
