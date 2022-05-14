@@ -2,6 +2,14 @@
 
 namespace interp
 {
+	template<class V>
+	concept vector_type = requires (V v)
+	{
+		{v.back()} -> std::convertible_to<double>;
+		{v.front()} -> std::convertible_to<double>;
+	};
+
+
 	template<class derived_extr>
 	class base_extrapolation
 	{
@@ -11,14 +19,14 @@ namespace interp
 			return static_cast<const derived_extr&>(*this);
 		}
 
-		template<class vector_t>
-		double left_extrap(double x, const vector_t& x_vec, const vector_t& y_vec) const
+		template<vector_type V>
+		double left_extrap(double x, const V& x_vec, const V& y_vec) const
 		{
 			return true_this().left_extrap(x, x_vec, y_vec);
 		}
 
-		template<class vector_t>
-		double right_extrap(double x, const vector_t& x_vec, const vector_t& y_vec) const
+		template<vector_type V>
+		double right_extrap(double x, const V& x_vec, const V& y_vec) const
 		{
 			return true_this().right_extrap(x, x_vec, y_vec);
 		}
@@ -29,6 +37,7 @@ namespace interp
 	{
 
 	};
+
 
 	template<class T>
 	constexpr bool is_extrapolation = std::is_base_of_v< base_extrapolation<T>, T>;
