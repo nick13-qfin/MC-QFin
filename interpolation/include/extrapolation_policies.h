@@ -43,5 +43,5 @@ namespace interp
 	constexpr bool is_extrapolation = std::is_base_of_v< base_extrapolation<T>, T>;
 
 	template<class T>
-	concept extrapolation_type = is_extrapolation<T>;
+	concept extrap_type = is_extrapolation<T>;
 }

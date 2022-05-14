@@ -8,7 +8,7 @@ namespace interp
 
 
 
-	template<template<class> class derived_interp, extrapolation_type E>
+	template<template<class> class derived_interp, extrap_type E>
 	class base_interp1d
 	{
 		const derived_interp<E>& true_this() const
@@ -47,7 +47,7 @@ namespace interp
 
 	};
     
-    template <template<class> class concrete, extrapolation_type T>
+    template <template<class> class concrete, extrap_type T>
     std::true_type is_interp_func(base_interp1d<concrete,T>*);
     
     std::false_type is_interp_func(...);

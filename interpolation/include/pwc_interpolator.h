@@ -3,7 +3,7 @@
 namespace interp
 {
 
-	template<extrapolation_type E>
+	template<extrap_type E>
 	class pwc_interp : public base_interp1d<pwc_interp, E>
 	{
 		using base = base_interp1d<pwc_interp, E>;
