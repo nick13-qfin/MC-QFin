@@ -62,7 +62,7 @@ namespace interp
 	template<class full_interp_t>
 	concept interp_type2 = requires (full_interp_t f, double a)
 	{
-		f.interpolate(a);
+		{f.interpolate(a)} -> std::convertible_to<double>;
 	};
 
 
