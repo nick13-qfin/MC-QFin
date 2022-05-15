@@ -5,9 +5,6 @@
 
 namespace interp
 {
-
-
-
 	template<template<class> class derived_interp, extrap_type E>
 	class base_interp1d
 	{
@@ -46,7 +43,12 @@ namespace interp
 		}
 
 	};
+
+	//no-interpolation - utility type
+	template<extrap_type E>
+	class no_interpolation : public base_interp1d<no_interpolation, E> {};
     
+	//Template utilities
     template <template<class> class concrete, extrap_type T>
     std::true_type is_interp_func(base_interp1d<concrete,T>*);
     
