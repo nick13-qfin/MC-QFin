@@ -17,6 +17,4 @@ namespace interp
 		}
 	};
 
-	// double1d interpolator used as a 2d interpolator
-
 }
